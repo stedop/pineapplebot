@@ -1,16 +1,16 @@
 import { each } from 'lodash';
 import DiscordCommand from './../DiscordCommand';
 
-export default class TopTen extends DiscordCommand {
+export default class Top extends DiscordCommand {
 
     /**
      * Define command
      * @returns { TopTen }
      */
     boot() {
-        this.name = 'TopTen';
-        this.syntax = 'topten';
-        this.description = 'lists the topten posts in uktrees';
+        this.name = 'Top';
+        this.syntax = 'top <number of posts> ';
+        this.description = 'lists the top n posts in uktrees, maximum of 10';
         return this;
     }
 
@@ -21,22 +21,19 @@ export default class TopTen extends DiscordCommand {
      * @param isEdit { boolean }
      */
     process( message, params, isEdit ) {
+
+        let n = 5;
+        if (params.suffix) {
+            n = parseInt(params.suffix);
+        }
         this
             .__reddit
             .getSubreddit( params.subreddit )
             .getHot()
             .then(
                 ( response ) => {
-                    this.sendBatchedMessage( this.__dot.topTen( { 'listings': response.slice( 0, 10 ) } ), message );
+                    this.sendBatchedMessage( this.__dot.top( { 'listings': response.slice( 0, n ) } ), message );
                 } );
-
-        if ( params.suffix ) {
-            message.channel.sendMessage( 'note that !topten takes no arguments!' ).catch(
-                ( error ) => {
-                    throw error;
-                }
-            );
-        }
     }
 
     /**

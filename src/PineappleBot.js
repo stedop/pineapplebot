@@ -6,7 +6,7 @@ import Discord from 'discord.js';
 import Dot from 'dot';
 //import DateFormat from 'dateformat';
 import Ping from './Discord/Ping';
-import TopTen from './Discord/TopTen';
+import TopTen from './Discord/Top';
 
 export default class bot {
 

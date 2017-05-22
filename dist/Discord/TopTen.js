@@ -44,16 +44,16 @@ function _inherits(subClass, superClass) {
     }subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } });if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
 }
 
-var TopTen = function (_DiscordCommand) {
-    _inherits(TopTen, _DiscordCommand);
+var Top = function (_DiscordCommand) {
+    _inherits(Top, _DiscordCommand);
 
-    function TopTen() {
-        _classCallCheck(this, TopTen);
+    function Top() {
+        _classCallCheck(this, Top);
 
-        return _possibleConstructorReturn(this, (TopTen.__proto__ || Object.getPrototypeOf(TopTen)).apply(this, arguments));
+        return _possibleConstructorReturn(this, (Top.__proto__ || Object.getPrototypeOf(Top)).apply(this, arguments));
     }
 
-    _createClass(TopTen, [{
+    _createClass(Top, [{
         key: 'boot',
 
         /**
@@ -61,9 +61,9 @@ var TopTen = function (_DiscordCommand) {
          * @returns { TopTen }
          */
         value: function boot() {
-            this.name = 'TopTen';
-            this.syntax = 'topten';
-            this.description = 'lists the topten posts in uktrees';
+            this.name = 'Top';
+            this.syntax = 'top <number of posts> ';
+            this.description = 'lists the top n posts in uktrees, maximum of 10';
             return this;
         }
 
@@ -79,15 +79,13 @@ var TopTen = function (_DiscordCommand) {
         value: function process(message, params, isEdit) {
             var _this2 = this;
 
-            this.__reddit.getSubreddit(params.subreddit).getHot().then(function (response) {
-                _this2.sendBatchedMessage(_this2.__dot.topTen({ 'listings': response.slice(0, 10) }), message);
-            });
-
+            var n = 5;
             if (params.suffix) {
-                message.channel.sendMessage('note that !topten takes no arguments!').catch(function (error) {
-                    throw error;
-                });
+                n = parseInt(params.suffix);
             }
+            this.__reddit.getSubreddit(params.subreddit).getHot().then(function (response) {
+                _this2.sendBatchedMessage(_this2.__dot.top({ 'listings': response.slice(0, n) }), message);
+            });
         }
 
         /**
@@ -109,12 +107,9 @@ var TopTen = function (_DiscordCommand) {
         }
     }]);
 
-    return TopTen;
+    return Top;
 }(_DiscordCommand3.default);
 
-exports.default = TopTen;
-//# sourceMappingURL=TopTen.js.map
-//# sourceMappingURL=TopTen.js.map
-//# sourceMappingURL=TopTen.js.map
+exports.default = Top;
 //# sourceMappingURL=TopTen.js.map
 //# sourceMappingURL=TopTen.js.map
