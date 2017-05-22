@@ -5,8 +5,8 @@ import Snoowrap from 'snoowrap';
 import Discord from 'discord.js';
 import Dot from 'dot';
 //import DateFormat from 'dateformat';
-import Ping from './Commands/Ping';
-import TopTen from './Commands/TopTen';
+import Ping from './Discord/Ping';
+import TopTen from './Discord/TopTen';
 
 export default class bot {
 
@@ -89,8 +89,8 @@ export default class bot {
          * @type {{ping: Command}}
          */
         this.discordCommands = {
-            'ping': new Ping().boot(this.__discord, this.__dot, this.__reddit),
-            'topten': new TopTen().boot(this.__discord, this.__dot, this.__reddit)
+            'ping': new Ping(this.__discord, this.__dot, this.__reddit).boot(),
+            'topten': new TopTen(this.__discord, this.__dot, this.__reddit).boot()
         };
 
         this.__initBotEvents();

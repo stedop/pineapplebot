@@ -1,34 +1,16 @@
-import Dot from 'dot';
-import Snoowrap from 'snoowrap';
-import Discord from 'discord.js';
 import { each } from 'lodash';
+import DiscordCommand from './../DiscordCommand';
 
-export default class TopTen {
+export default class TopTen extends DiscordCommand {
 
     /**
-     * Sets up command
-     *
-     * @returns {TopTen}
+     * Define command
+     * @returns { TopTen }
      */
-    constructor() {
+    boot() {
         this.name = 'TopTen';
         this.syntax = 'topten';
         this.description = 'lists the topten posts in uktrees';
-        return this;
-    }
-
-
-    /**
-     * todo work out babel extends and move this to the command class
-     * @param discord { Discord.Client }
-     * @param dot { Dot }
-     * @param reddit { Snoowrap }
-     * @returns { TopTen }
-     */
-    boot( discord, dot, reddit ) {
-        this.__discord = discord;
-        this.__dot = dot;
-        this.__reddit = reddit;
         return this;
     }
 
