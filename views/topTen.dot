@@ -1,0 +1,6 @@
+'**Top Ten**'
+
+{{~it.listings :submission:index }}
+{{=submission.title}}
+https://www.reddit.com/{{=submission.permalink}}
+{{~}}

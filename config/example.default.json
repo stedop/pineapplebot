@@ -1,0 +1,16 @@
+{
+  "debug": true,
+
+  "reddit" : {
+    "userAgent": "",
+    "clientId": "",
+    "clientSecret": "",
+    "refreshToken": "",
+    "subreddit": ""
+  },
+  "discord" : {
+    "token": "",
+    "server": "",
+    "commandPrefix": "!"
+  }
+}

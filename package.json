@@ -1,0 +1,35 @@
+{
+  "name": "pineapplebot",
+  "version": "1.0.0",
+  "description": "a bot to link reddit and the uktrees discor server",
+  "main": "index.js",
+  "author": "Stephen Dop <dopstephen@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "config": "^1.26.1",
+    "dateformat": "^2.0.0",
+    "discord.js": "^11.1.0",
+    "dot": "^1.1.1",
+    "erlpack": "hammerandchisel/erlpack",
+    "lodash": "^4.17.4",
+    "snoowrap": "^1.14.0",
+    "uws": "^0.14.5"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.14.0",
+    "babel-plugin-lodash": "^3.2.6",
+    "babel-plugin-transform-async-to-generator": "^6.8.0",
+    "babel-plugin-transform-es2015-arrow-functions": "^6.8.0",
+    "babel-plugin-transform-es2015-block-scoping": "^6.14.0",
+    "babel-plugin-transform-es2015-classes": "^6.24.1",
+    "babel-plugin-transform-es2015-destructuring": "^6.9.0",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.14.0",
+    "babel-plugin-transform-es2015-parameters": "^6.11.4",
+    "babel-plugin-transform-es2015-spread": "^6.8.0",
+    "babel-plugin-transform-es2015-template-literals": "^6.8.0",
+    "babel-plugin-transform-object-rest-spread": "^6.8.0",
+    "babelify": "^7.3.0",
+    "eslint": "^3.14.1",
+    "eslint-config-google": "^0.7.1"
+  }
+}
