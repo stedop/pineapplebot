@@ -13,7 +13,7 @@ export default class DiscordCommand {
      * @param dot { Dot }
      * @param reddit { Snoowrap }
      *
-     * @returns {TopTen}
+     * @returns {DiscordCommand}
      */
     constructor( discord, dot, reddit ) {
         this.__discord = discord;

@@ -72,16 +72,15 @@ var Ping = function (_DiscordCommand) {
          *
          * @param message { Discord.message }
          * @param params { {} }
-         * @param isEdit { boolean }
          */
 
     }, {
         key: 'process',
-        value: function process(message, params, isEdit) {
+        value: function process(message, params) {
             message.channel.sendMessage(message.author + ' pong!').catch(function (error) {
                 throw error;
             });
-            if (params.suffix) {
+            if (this.suffix) {
                 message.channel.sendMessage('note that !ping takes no arguments!').catch(function (error) {
                     throw error;
                 });
@@ -93,6 +92,9 @@ var Ping = function (_DiscordCommand) {
 }(_DiscordCommand3.default);
 
 exports.default = Ping;
+//# sourceMappingURL=Ping.js.map
+//# sourceMappingURL=Ping.js.map
+//# sourceMappingURL=Ping.js.map
 //# sourceMappingURL=Ping.js.map
 //# sourceMappingURL=Ping.js.map
 //# sourceMappingURL=Ping.js.map

@@ -4,19 +4,19 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _sortBy2 = require('lodash/sortBy');
-
-var _sortBy3 = _interopRequireDefault(_sortBy2);
-
-var _each2 = require('lodash/each');
-
-var _each3 = _interopRequireDefault(_each2);
-
 var _defaults2 = require('lodash/defaults');
 
 var _defaults3 = _interopRequireDefault(_defaults2);
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+var _createClass = function () {
+    function defineProperties(target, props) {
+        for (var i = 0; i < props.length; i++) {
+            var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);
+        }
+    }return function (Constructor, protoProps, staticProps) {
+        if (protoProps) defineProperties(Constructor.prototype, protoProps);if (staticProps) defineProperties(Constructor, staticProps);return Constructor;
+    };
+}();
 //import DateFormat from 'dateformat';
 
 
@@ -32,17 +32,27 @@ var _dot = require('dot');
 
 var _dot2 = _interopRequireDefault(_dot);
 
+var _DiscordRouter = require('./DiscordRouter');
+
+var _DiscordRouter2 = _interopRequireDefault(_DiscordRouter);
+
 var _Ping = require('./Discord/Ping');
 
 var _Ping2 = _interopRequireDefault(_Ping);
 
-var _TopTen = require('./Discord/TopTen');
+var _Top = require('./Discord/Top');
 
-var _TopTen2 = _interopRequireDefault(_TopTen);
+var _Top2 = _interopRequireDefault(_Top);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _interopRequireDefault(obj) {
+    return obj && obj.__esModule ? obj : { default: obj };
+}
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+function _classCallCheck(instance, Constructor) {
+    if (!(instance instanceof Constructor)) {
+        throw new TypeError("Cannot call a class as a function");
+    }
+}
 
 var bot = function () {
 
@@ -128,9 +138,15 @@ var bot = function () {
          * @type {{ping: Command}}
          */
         this.discordCommands = {
-            'ping': new _Ping2.default(this.__discord, this.__dot, this.__reddit).boot(),
-            'topten': new _TopTen2.default(this.__discord, this.__dot, this.__reddit).boot()
+            'ping': _Ping2.default,
+            'top': _Top2.default
         };
+
+        /**
+         * @type {DiscordRouter}
+         * @priate
+         */
+        this.__router = this.__initDiscordRouter();
 
         this.__initBotEvents();
     }
@@ -141,7 +157,6 @@ var bot = function () {
      * @returns Snoowrap
      * @private
      */
-
 
     _createClass(bot, [{
         key: '__initRedditClient',
@@ -184,6 +199,11 @@ var bot = function () {
         value: function __initTemplateEngine() {
             return _dot2.default.process({ templateSettings: { strip: false }, path: 'views/' });
         }
+    }, {
+        key: '__initDiscordRouter',
+        value: function __initDiscordRouter() {
+            return new _DiscordRouter2.default(this.discordCommands, this.__discord, this.__dot, this.__reddit);
+        }
 
         /**
          * Sets up the bot events
@@ -205,105 +225,41 @@ var bot = function () {
             });
 
             this.__discord.on('message', function (msg) {
-                _this.checkMessagesForCommand(msg, false);
+                return _this.handleMessage(msg);
             });
             this.__discord.on('messageUpdate', function (oldMessage, newMessage) {
-                _this.checkMessagesForCommand(newMessage, true);
+                return _this.handleMessage(newMessage);
+            });
+            this.__discord.on('disconnected', function () {
+                console.log('Disconnected!');
+                process.exit(1); //exit node.js with an error
             });
         }
-
-        /**
-         *
-         * @param msg
-         * @param isEdit
-         */
-
     }, {
-        key: 'checkMessagesForCommand',
-        value: function checkMessagesForCommand(msg, isEdit) {
-            //check if message is a command
-            if (msg.author.id !== this.__discord.user.id && msg.content.startsWith(this.commandPrefix)) {
-                console.log('treating ' + msg.content + ' from ' + msg.author + ' as command');
-                var cmdTxt = msg.content.split(' ')[0].substring(this.commandPrefix.length);
-                var suffix = msg.content.substring(cmdTxt.length + this.commandPrefix.length + 1); //add one for the ! and one for the space
-                if (msg.isMentioned(this.__discord.user)) {
-                    try {
-                        cmdTxt = msg.content.split(' ')[1];
-                        suffix = msg.content.substring(this.__discord.user.mention().length + cmdTxt.length + this.commandPrefix.length + 1);
-                    } catch (e) {
-                        //no command
-                        msg.channel.sendMessage('Yes?');
-                        return;
+        key: 'handleMessage',
+        value: function handleMessage(msg) {
+            try {
+                if (msg.author !== this.__discord.user) {
+                    var _cmd = this.__router.checkMessagesForCommand(msg);
+
+                    if (_cmd !== false) {
+                        return _cmd.process(msg, { subreddit: this.subreddit });
                     }
-                }
 
-                var cmd = this.discordCommands[cmdTxt];
-
-                if (cmdTxt === 'help') {
-                    //help is special since it iterates over the other this.discordCommands
-                    this.helpCommand(suffix, msg);
-                } else if (cmd) {
-
-                    try {
-                        cmd.process(msg, { subreddit: this.subreddit, suffix: suffix }, isEdit);
-                    } catch (e) {
-                        var msgTxt = 'command ' + cmdTxt + ' failed :(';
-                        if (this.debug) {
-                            msgTxt += '\n' + e.stack;
-                        }
-                        msg.channel.sendMessage(msgTxt);
-                        throw e;
-                    }
-                } else {
-                    msg.channel.sendMessage(cmdTxt + ' not recognized as a command!').then(function (message) {
+                    msg.channel.sendMessage('Not recognized as a command! Try ' + this.commandPrefix + 'help').then(function (message) {
                         return message.delete(5000);
                     });
                 }
-            } else {
-                //message isn't a command or is from us
-                //drop our own messages to prevent feedback loops
-                if (msg.author === this.__discord.user) {
-                    return;
+
+                return false;
+            } catch (e) {
+                var msgTxt = 'command ' + cmd + ' failed :(';
+                if (this.debug) {
+                    msgTxt += '\n' + e.stack;
                 }
-
-                if (msg.author !== this.__discord.user && msg.isMentioned(this.__discord.user)) {
-                    msg.channel.sendMessage(msg.author + ', you called?');
-                }
+                msg.channel.sendMessage(msgTxt);
+                throw e;
             }
-        }
-
-        /**
-         * Rund the help comand
-         * @param suffix
-         * @param msg Disco
-         */
-
-    }, {
-        key: 'helpCommand',
-        value: function helpCommand(suffix, msg) {
-            var commands = this.discordCommands;
-            var cmds = {};
-            if (suffix) {
-                cmds = suffix.split(' ').filter(function (cmd) {
-                    return commands[cmd];
-                });
-            } else {
-                cmds = (0, _sortBy3.default)(commands, ['']);
-            }
-
-            var contents = this.__dot.helpList({ 'commands': cmds });
-            this.sendBatchedMessage(contents, msg);
-        }
-    }, {
-        key: 'sendBatchedMessage',
-        value: function sendBatchedMessage(contents, msg) {
-            var batches = contents.match(/.{1,1016}/g);
-
-            (0, _each3.default)(batches, function (batch) {
-                msg.author.sendMessage(batch).catch(function (error) {
-                    throw error;
-                });
-            });
         }
     }, {
         key: 'go',
@@ -320,4 +276,17 @@ var bot = function () {
 }();
 
 exports.default = bot;
+//# sourceMappingURL=PineappleBot.js.map
+//# sourceMappingURL=PineappleBot.js.map
+//# sourceMappingURL=PineappleBot.js.map
+//# sourceMappingURL=PineappleBot.js.map
+//# sourceMappingURL=PineappleBot.js.map
+//# sourceMappingURL=PineappleBot.js.map
+//# sourceMappingURL=PineappleBot.js.map
+//# sourceMappingURL=PineappleBot.js.map
+//# sourceMappingURL=PineappleBot.js.map
+//# sourceMappingURL=PineappleBot.js.map
+//# sourceMappingURL=PineappleBot.js.map
+//# sourceMappingURL=PineappleBot.js.map
+//# sourceMappingURL=PineappleBot.js.map
 //# sourceMappingURL=PineappleBot.js.map

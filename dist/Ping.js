@@ -18,9 +18,9 @@ var _dot = require('dot');
 
 var _dot2 = _interopRequireDefault(_dot);
 
-var _snoowrap = require('snoowrap');
+var _DiscordCommand2 = require('./../DiscordCommand');
 
-var _snoowrap2 = _interopRequireDefault(_snoowrap);
+var _DiscordCommand3 = _interopRequireDefault(_DiscordCommand2);
 
 function _interopRequireDefault(obj) {
     return obj && obj.__esModule ? obj : { default: obj };
@@ -32,36 +32,39 @@ function _classCallCheck(instance, Constructor) {
     }
 }
 
-var Ping = function () {
+function _possibleConstructorReturn(self, call) {
+    if (!self) {
+        throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+    }return call && (typeof call === "object" || typeof call === "function") ? call : self;
+}
 
-    /**
-     * Sets up command
-     *
-     * @returns {Ping}
-     */
+function _inherits(subClass, superClass) {
+    if (typeof superClass !== "function" && superClass !== null) {
+        throw new TypeError("Super expression must either be null or a function, not " + typeof superClass);
+    }subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } });if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
+}
+
+var Ping = function (_DiscordCommand) {
+    _inherits(Ping, _DiscordCommand);
+
     function Ping() {
         _classCallCheck(this, Ping);
 
-        this.name = 'Ping';
-        this.syntax = 'ping';
-        this.description = 'responds pong, useful for checking if bot is alive';
-        return this;
+        return _possibleConstructorReturn(this, (Ping.__proto__ || Object.getPrototypeOf(Ping)).apply(this, arguments));
     }
-
-    /**
-     * todo work out babel extends and move this to the command class
-     * @param discord { Discord.Client }
-     * @param dot { Dot }
-     * @param reddit { Snoowrap }
-     * @returns { TopTen }
-     */
 
     _createClass(Ping, [{
         key: 'boot',
-        value: function boot(discord, dot, reddit) {
-            this.__discord = discord;
-            this.__dot = dot;
-            this.__reddit = reddit;
+
+        /**
+         * Sets up command
+         *
+         * @returns {Ping}
+         */
+        value: function boot() {
+            this.name = 'Ping';
+            this.syntax = 'ping';
+            this.description = 'responds pong, useful for checking if bot is alive';
             return this;
         }
 
@@ -69,16 +72,15 @@ var Ping = function () {
          *
          * @param message { Discord.message }
          * @param params { {} }
-         * @param isEdit { boolean }
          */
 
     }, {
         key: 'process',
-        value: function process(message, params, isEdit) {
+        value: function process(message, params) {
             message.channel.sendMessage(message.author + ' pong!').catch(function (error) {
                 throw error;
             });
-            if (params.suffix) {
+            if (this.suffix) {
                 message.channel.sendMessage('note that !ping takes no arguments!').catch(function (error) {
                     throw error;
                 });
@@ -87,41 +89,9 @@ var Ping = function () {
     }]);
 
     return Ping;
-}();
+}(_DiscordCommand3.default);
 
 exports.default = Ping;
-//# sourceMappingURL=Ping.js.map
-//# sourceMappingURL=Ping.js.map
-//# sourceMappingURL=Ping.js.map
-//# sourceMappingURL=Ping.js.map
-//# sourceMappingURL=Ping.js.map
-//# sourceMappingURL=Ping.js.map
-//# sourceMappingURL=Ping.js.map
-//# sourceMappingURL=Ping.js.map
-//# sourceMappingURL=Ping.js.map
-//# sourceMappingURL=Ping.js.map
-//# sourceMappingURL=Ping.js.map
-//# sourceMappingURL=Ping.js.map
-//# sourceMappingURL=Ping.js.map
-//# sourceMappingURL=Ping.js.map
-//# sourceMappingURL=Ping.js.map
-//# sourceMappingURL=Ping.js.map
-//# sourceMappingURL=Ping.js.map
-//# sourceMappingURL=Ping.js.map
-//# sourceMappingURL=Ping.js.map
-//# sourceMappingURL=Ping.js.map
-//# sourceMappingURL=Ping.js.map
-//# sourceMappingURL=Ping.js.map
-//# sourceMappingURL=Ping.js.map
-//# sourceMappingURL=Ping.js.map
-//# sourceMappingURL=Ping.js.map
-//# sourceMappingURL=Ping.js.map
-//# sourceMappingURL=Ping.js.map
-//# sourceMappingURL=Ping.js.map
-//# sourceMappingURL=Ping.js.map
-//# sourceMappingURL=Ping.js.map
-//# sourceMappingURL=Ping.js.map
-//# sourceMappingURL=Ping.js.map
 //# sourceMappingURL=Ping.js.map
 //# sourceMappingURL=Ping.js.map
 //# sourceMappingURL=Ping.js.map

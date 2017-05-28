@@ -18,13 +18,12 @@ export default class Top extends DiscordCommand {
      *
      * @param message { Discord.Message }
      * @param params {{}}
-     * @param isEdit { boolean }
      */
-    process( message, params, isEdit ) {
+    process( message, params ) {
 
         let n = 5;
         if (params.suffix) {
-            n = parseInt(params.suffix);
+            n = parseInt(this.suffix);
         }
         this
             .__reddit

@@ -5,8 +5,9 @@ import Snoowrap from 'snoowrap';
 import Discord from 'discord.js';
 import Dot from 'dot';
 //import DateFormat from 'dateformat';
+import DiscordRouter from './DiscordRouter';
 import Ping from './Discord/Ping';
-import TopTen from './Discord/Top';
+import Top from './Discord/Top';
 
 export default class bot {
 
@@ -89,9 +90,15 @@ export default class bot {
          * @type {{ping: Command}}
          */
         this.discordCommands = {
-            'ping': new Ping(this.__discord, this.__dot, this.__reddit).boot(),
-            'topten': new TopTen(this.__discord, this.__dot, this.__reddit).boot()
+            'ping': Ping,
+            'top': Top
         };
+
+        /**
+         * @type {DiscordRouter}
+         * @priate
+         */
+        this.__router = this.__initDiscordRouter();
 
         this.__initBotEvents();
     }
@@ -138,6 +145,10 @@ export default class bot {
         return Dot.process( { templateSettings: { strip: false }, path: 'views/' } );
     }
 
+    __initDiscordRouter() {
+        return new DiscordRouter( this.discordCommands, this.__discord, this.__dot, this.__reddit );
+    }
+
     /**
      * Sets up the bot events
      *
@@ -157,101 +168,37 @@ export default class bot {
 
         } );
 
-        this.__discord.on( 'message', ( msg ) => {
-            this.checkMessagesForCommand( msg, false );
-        } );
-        this.__discord.on( 'messageUpdate', ( oldMessage, newMessage ) => {
-            this.checkMessagesForCommand( newMessage, true );
+        this.__discord.on( 'message', ( msg ) => this.handleMessage( msg ) );
+        this.__discord.on( 'messageUpdate', ( oldMessage, newMessage ) => this.handleMessage( newMessage ) );
+        this.__discord.on( 'disconnected', () => {
+            console.log( 'Disconnected!' );
+            process.exit( 1 ); //exit node.js with an error
         } );
     }
 
-    /**
-     *
-     * @param msg
-     * @param isEdit
-     */
-    checkMessagesForCommand( msg, isEdit ) {
-        //check if message is a command
-        if ( msg.author.id !== this.__discord.user.id && msg.content.startsWith( this.commandPrefix ) ) {
-            console.log( 'treating ' + msg.content + ' from ' + msg.author + ' as command' );
-            let cmdTxt = msg.content.split( ' ' )[ 0 ].substring( this.commandPrefix.length );
-            let suffix = msg.content.substring( cmdTxt.length + this.commandPrefix.length + 1 );//add one for the ! and one for the space
-            if ( msg.isMentioned( this.__discord.user ) ) {
-                try {
-                    cmdTxt = msg.content.split( ' ' )[ 1 ];
-                    suffix = msg.content.substring( this.__discord.user.mention().length + cmdTxt.length + this.commandPrefix.length + 1 );
-                } catch ( e ) { //no command
-                    msg.channel.sendMessage( 'Yes?' );
-                    return;
-                }
-            }
+    handleMessage( msg ) {
+        try {
+            if (msg.author !== this.__discord.user) {
+                let cmd = this.__router.checkMessagesForCommand( msg );
 
-            let cmd = this.discordCommands[ cmdTxt ];
-
-            if ( cmdTxt === 'help' ) {
-                //help is special since it iterates over the other this.discordCommands
-                this.helpCommand( suffix, msg );
-            }
-            else if ( cmd ) {
-
-                try {
-                    cmd.process( msg, { subreddit: this.subreddit, suffix: suffix }, isEdit  );
-                } catch ( e ) {
-                    let msgTxt = 'command ' + cmdTxt + ' failed :(';
-                    if ( this.debug ) {
-                        msgTxt += '\n' + e.stack;
-                    }
-                    msg.channel.sendMessage( msgTxt );
-                    throw(e);
+                if ( cmd !== false ) {
+                    return cmd.process( msg, { subreddit: this.subreddit } );
                 }
 
-            } else {
                 msg.channel.sendMessage(
-                    cmdTxt + ' not recognized as a command!' ).then( (message => message.delete( 5000 ))
+                    'Not recognized as a command! Try ' + this.commandPrefix + 'help' ).then( (message => message.delete( 5000 ))
                 );
             }
-        } else {
-            //message isn't a command or is from us
-            //drop our own messages to prevent feedback loops
-            if ( msg.author === this.__discord.user ) {
-                return;
+
+            return false;
+        } catch ( e ) {
+            let msgTxt = 'command ' + cmd + ' failed :(';
+            if ( this.debug ) {
+                msgTxt += '\n' + e.stack;
             }
-
-            if ( msg.author !== this.__discord.user && msg.isMentioned( this.__discord.user ) ) {
-                msg.channel.sendMessage( msg.author + ', you called?' );
-            }
+            msg.channel.sendMessage( msgTxt );
+            throw e;
         }
-    }
-
-    /**
-     * Rund the help comand
-     * @param suffix
-     * @param msg Disco
-     */
-    helpCommand( suffix, msg ) {
-        let commands = this.discordCommands;
-        let cmds = {};
-        if ( suffix ) {
-            cmds = suffix.split( ' ' ).filter( function ( cmd ) {
-                return commands[ cmd ];
-            } );
-        } else {
-            cmds = sortBy( commands, [ '' ] );
-        }
-
-        let contents = this.__dot.helpList( { 'commands': cmds } );
-        this.sendBatchedMessage(contents, msg);
-
-    }
-
-    sendBatchedMessage(contents, msg) {
-        let batches = contents.match(/.{1,1016}/g);
-
-        each(batches, (batch) => {
-            msg.author.sendMessage( batch ).catch( ( error ) => {
-                throw(error);
-            } );
-        });
     }
 
     go() {

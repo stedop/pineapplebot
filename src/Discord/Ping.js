@@ -19,15 +19,14 @@ export default class Ping extends DiscordCommand {
      *
      * @param message { Discord.message }
      * @param params { {} }
-     * @param isEdit { boolean }
      */
-    process(message, params, isEdit) {
+    process(message, params) {
         message.channel.sendMessage( message.author + ' pong!' ).catch(
             (error) => {
                 throw error;
             }
         );
-        if ( params.suffix ) {
+        if ( this.suffix ) {
             message.channel.sendMessage( 'note that !ping takes no arguments!' ).catch(
                 (error) => {
                     throw error;

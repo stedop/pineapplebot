@@ -45,7 +45,7 @@ var DiscordCommand = function () {
    * @param dot { Dot }
    * @param reddit { Snoowrap }
    *
-   * @returns {TopTen}
+   * @returns {DiscordCommand}
    */
   function DiscordCommand(discord, dot, reddit) {
     _classCallCheck(this, DiscordCommand);
@@ -74,6 +74,22 @@ var DiscordCommand = function () {
 }();
 
 exports.default = DiscordCommand;
+//# sourceMappingURL=DiscordCommand.js.map
+//# sourceMappingURL=DiscordCommand.js.map
+//# sourceMappingURL=DiscordCommand.js.map
+//# sourceMappingURL=DiscordCommand.js.map
+//# sourceMappingURL=DiscordCommand.js.map
+//# sourceMappingURL=DiscordCommand.js.map
+//# sourceMappingURL=DiscordCommand.js.map
+//# sourceMappingURL=DiscordCommand.js.map
+//# sourceMappingURL=DiscordCommand.js.map
+//# sourceMappingURL=DiscordCommand.js.map
+//# sourceMappingURL=DiscordCommand.js.map
+//# sourceMappingURL=DiscordCommand.js.map
+//# sourceMappingURL=DiscordCommand.js.map
+//# sourceMappingURL=DiscordCommand.js.map
+//# sourceMappingURL=DiscordCommand.js.map
+//# sourceMappingURL=DiscordCommand.js.map
 //# sourceMappingURL=DiscordCommand.js.map
 //# sourceMappingURL=DiscordCommand.js.map
 //# sourceMappingURL=DiscordCommand.js.map
