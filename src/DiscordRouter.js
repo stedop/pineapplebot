@@ -88,6 +88,7 @@ export default class DiscordRouter {
      * @param msg Discord.Message
      */
     checkMessagesForCommand( msg) {
+        console.log('routes', this.__routes);
         //check if message is a command
         if ( this.isCommand(msg) === true ) {
             return this.match(msg);
@@ -120,58 +121,14 @@ export default class DiscordRouter {
             }
         }
 
-        // todo because of this change I've made I think help can be it's own command
-        // todo also this is really hacky
-        if ( routeName === 'help' ) {
-            this.helpCommand( params, msg );
-            let help = {};
-            help.process = () => {return true;};
-            return help;
-        }
-
         let cmd = this.__routes[ routeName ];
 
-        if ( cmd) {
+        if ( cmd ) {
             cmd.suffix = params;
+            cmd.routes = this.getRoutes();
             return cmd;
         }
 
         return false;
-    }
-
-    /**
-     * Run the help command
-     * @param suffix
-     * @param msg Disco
-     */
-    helpCommand( suffix, msg ) {
-        let routes = this.__routes;
-        let cmds = {};
-        if ( suffix ) {
-            cmds = suffix.split( ' ' ).filter( function ( cmd ) {
-                return routes[ cmd ];
-            } );
-        } else {
-            cmds = sortBy( routes, [ '' ] );
-        }
-
-        let contents = this.__dot.helpList( { 'commands': cmds } );
-        this.sendBatchedMessage(contents, msg);
-
-    }
-
-    /**
-     *
-     * @param contents string
-     * @param msg Discord.Message
-     */
-    sendBatchedMessage(contents, msg) {
-        let batches = contents.match(/.{1,1016}/g);
-
-        each(batches, (batch) => {
-            msg.author.sendMessage( batch ).catch( ( error ) => {
-                throw(error);
-            } );
-        });
     }
 }

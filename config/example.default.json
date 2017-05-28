@@ -12,5 +12,11 @@
     "token": "",
     "server": "",
     "commandPrefix": "!"
+  },
+  "dot" : {
+    "templateSettings": {
+      "strip": false
+    },
+    "path": "views/"
   }
 }

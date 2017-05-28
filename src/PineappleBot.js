@@ -1,11 +1,12 @@
 'use strict';
 
-import { defaults, each, sortBy } from 'lodash';
+import { defaults } from 'lodash';
 import Snoowrap from 'snoowrap';
 import Discord from 'discord.js';
 import Dot from 'dot';
 //import DateFormat from 'dateformat';
 import DiscordRouter from './DiscordRouter';
+import Help from './Discord/Help';
 import Ping from './Discord/Ping';
 import Top from './Discord/Top';
 import Where from './Discord/Where';
@@ -91,6 +92,7 @@ export default class bot {
          * @type {{}}
          */
         this.discordCommands = {
+            'help': Help,
             'ping': Ping,
             'top': Top,
             'where': Where
