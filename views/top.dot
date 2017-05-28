@@ -1,4 +1,4 @@
-'**Top Ten**'
+'**Top {{=it.number}}**'
 
 {{~it.listings :submission:index }}
 {{=submission.title}}

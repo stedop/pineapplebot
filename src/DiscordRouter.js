@@ -121,8 +121,12 @@ export default class DiscordRouter {
         }
 
         // todo because of this change I've made I think help can be it's own command
+        // todo also this is really hacky
         if ( routeName === 'help' ) {
             this.helpCommand( params, msg );
+            let help = {};
+            help.process = () => {return true;};
+            return help;
         }
 
         let cmd = this.__routes[ routeName ];

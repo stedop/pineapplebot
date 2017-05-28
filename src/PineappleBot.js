@@ -8,6 +8,7 @@ import Dot from 'dot';
 import DiscordRouter from './DiscordRouter';
 import Ping from './Discord/Ping';
 import Top from './Discord/Top';
+import Where from './Discord/Where';
 
 export default class bot {
 
@@ -87,11 +88,12 @@ export default class bot {
 
         /**
          *
-         * @type {{ping: Command}}
+         * @type {{}}
          */
         this.discordCommands = {
             'ping': Ping,
-            'top': Top
+            'top': Top,
+            'where': Where
         };
 
         /**
@@ -167,7 +169,6 @@ export default class bot {
                     } );
 
         } );
-
         this.__discord.on( 'message', ( msg ) => this.handleMessage( msg ) );
         this.__discord.on( 'messageUpdate', ( oldMessage, newMessage ) => this.handleMessage( newMessage ) );
         this.__discord.on( 'disconnected', () => {
@@ -192,7 +193,7 @@ export default class bot {
 
             return false;
         } catch ( e ) {
-            let msgTxt = 'command ' + cmd + ' failed :(';
+            let msgTxt = 'fail! :(';
             if ( this.debug ) {
                 msgTxt += '\n' + e.stack;
             }

@@ -6,6 +6,7 @@
   "author": "Stephen Dop <dopstephen@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "axios": "^0.16.1",
     "config": "^1.26.1",
     "dateformat": "^2.0.0",
     "discord.js": "^11.1.0",

@@ -1,11 +1,12 @@
 import { each } from 'lodash';
 import DiscordCommand from './../DiscordCommand';
+import { Message } from 'discord.js';
 
 export default class Top extends DiscordCommand {
 
     /**
      * Define command
-     * @returns { TopTen }
+     * @returns { Top }
      */
     boot() {
         this.name = 'Top';
@@ -16,13 +17,13 @@ export default class Top extends DiscordCommand {
 
     /**
      *
-     * @param message { Discord.Message }
+     * @param message { Message }
      * @param params {{}}
      */
     process( message, params ) {
-
+console.log('suffix', this.suffix);
         let n = 5;
-        if (params.suffix) {
+        if (this.suffix) {
             n = parseInt(this.suffix);
         }
         this
@@ -31,14 +32,14 @@ export default class Top extends DiscordCommand {
             .getHot()
             .then(
                 ( response ) => {
-                    this.sendBatchedMessage( this.__dot.top( { 'listings': response.slice( 0, n ) } ), message );
+                    this.sendBatchedMessage( this.__dot.top( { 'number': n, 'listings': response.slice( 0, n ) } ), message );
                 } );
     }
 
     /**
      *
      * @param contents {string}
-     * @param msg {Discord.Message}
+     * @param msg {Message}
      */
     sendBatchedMessage( contents, msg ) {
         let batches = contents.match( /.{1,1016}/g );

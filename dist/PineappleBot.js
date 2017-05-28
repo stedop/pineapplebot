@@ -135,7 +135,7 @@ var bot = function () {
 
         /**
          *
-         * @type {{ping: Command}}
+         * @type {{}}
          */
         this.discordCommands = {
             'ping': _Ping2.default,
@@ -223,7 +223,6 @@ var bot = function () {
                     throw error;
                 });
             });
-
             this.__discord.on('message', function (msg) {
                 return _this.handleMessage(msg);
             });
@@ -240,10 +239,10 @@ var bot = function () {
         value: function handleMessage(msg) {
             try {
                 if (msg.author !== this.__discord.user) {
-                    var _cmd = this.__router.checkMessagesForCommand(msg);
+                    var cmd = this.__router.checkMessagesForCommand(msg);
 
-                    if (_cmd !== false) {
-                        return _cmd.process(msg, { subreddit: this.subreddit });
+                    if (cmd !== false) {
+                        return cmd.process(msg, { subreddit: this.subreddit });
                     }
 
                     msg.channel.sendMessage('Not recognized as a command! Try ' + this.commandPrefix + 'help').then(function (message) {
@@ -253,7 +252,7 @@ var bot = function () {
 
                 return false;
             } catch (e) {
-                var msgTxt = 'command ' + cmd + ' failed :(';
+                var msgTxt = 'fail! :(';
                 if (this.debug) {
                     msgTxt += '\n' + e.stack;
                 }
@@ -276,17 +275,6 @@ var bot = function () {
 }();
 
 exports.default = bot;
-//# sourceMappingURL=PineappleBot.js.map
-//# sourceMappingURL=PineappleBot.js.map
-//# sourceMappingURL=PineappleBot.js.map
-//# sourceMappingURL=PineappleBot.js.map
-//# sourceMappingURL=PineappleBot.js.map
-//# sourceMappingURL=PineappleBot.js.map
-//# sourceMappingURL=PineappleBot.js.map
-//# sourceMappingURL=PineappleBot.js.map
-//# sourceMappingURL=PineappleBot.js.map
-//# sourceMappingURL=PineappleBot.js.map
-//# sourceMappingURL=PineappleBot.js.map
 //# sourceMappingURL=PineappleBot.js.map
 //# sourceMappingURL=PineappleBot.js.map
 //# sourceMappingURL=PineappleBot.js.map
