@@ -34,6 +34,13 @@ export default class Discord extends Toy {
             }
         } );
 
+        /**
+         *
+         * @type {DiscordRouter}
+         * @private
+         */
+        this.__router = this.setupRouter();
+
         this.__discord.on( 'ready', () => {
             console.log( 'Logged in to discord!' );
             this
@@ -57,14 +64,19 @@ export default class Discord extends Toy {
      * @returns {{}}
      */
     provides() {
+
         return {
             'discord' : this.__discord,
-            'router' : this.setupRouter()
+            'router' : this.__router
         };
     }
 
+    /**
+     *
+     * @returns {DiscordRouter}
+     */
     setupRouter() {
-        return new DiscordRouter( this.discordCommands, ToyBox.get('dot'), Toybox.get('reddit'), this.config);
+        return new DiscordRouter( this.discordCommands, ToyBox.get('dot'), Toybox.get('reddit'), this.__config);
     }
 
     /**

@@ -4,12 +4,24 @@ import Config from 'config';
 
 export default class Toy {
 
-    constructor(config) {
+    /**
+     *
+     * @param toybox {Toybox}
+     * @param config {Config}
+     */
+    constructor(toybox, config) {
+
+        /**
+         *
+         * @type {Toybox}
+         */
+        this.toybox = toybox;
+
         /**
          * 
          * @type {Config}
          */
-        this.config = config;
+        this.__config = config;
         this.boot();
     }
 

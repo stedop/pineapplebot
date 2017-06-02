@@ -40,14 +40,14 @@ var bot = function () {
         _classCallCheck(this, bot);
 
         if (typeof config !== 'Config') {
-            throw new Error('need a proper config thanks knobcheese');
+            throw new Error('need a proper __config thanks knobcheese');
         }
 
         /**
          *
          * @type {Config}
          */
-        this.config = config;
+        this.__config = config;
 
         /**
          * The reddit client

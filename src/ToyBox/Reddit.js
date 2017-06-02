@@ -7,10 +7,10 @@ export default class Reddit extends Toy {
     provides() {
         return {
             'reddit': new Snoowrap( {
-                userAgent: this.config.get('Reddit.userAgent'),
-                clientId: this.config.get('Reddit.clientId'),
-                clientSecret: this.config.get('Reddit.clientSecret'),
-                refreshToken: this.config.get('Reddit.refreshToken')
+                userAgent: this.__config.get('Reddit.userAgent'),
+                clientId: this.__config.get('Reddit.clientId'),
+                clientSecret: this.__config.get('Reddit.clientSecret'),
+                refreshToken: this.__config.get('Reddit.refreshToken')
             } )
         };
     }
