@@ -1,7 +1,7 @@
 import { each } from 'lodash';
 import DiscordCommand from './../DiscordCommand';
 import { Message } from 'discord.js';
-import axios from 'Axios';
+import axios from 'axios';
 
 export default class Where extends DiscordCommand {
     /**

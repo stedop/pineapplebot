@@ -1,17 +1,16 @@
 import { sortBy, each } from 'lodash';
 import DiscordCommand from './../DiscordCommand';
 import { Message } from 'discord.js';
-import axios from 'Axios';
 
 export default class Help extends DiscordCommand {
     /**
      * Define command
-     * @returns { Where }
+     * @returns { Help }
      */
     boot() {
-        this.name = 'Where';
-        this.syntax = 'where <username> ';
-        this.description = 'will tell you if this user is registered on the map and tell you their location';
+        this.name = 'Help';
+        this.syntax = 'help <command>';
+        this.description = 'give the help for a command, leave blank to list all commands';
         return this;
     }
 
