@@ -11,7 +11,7 @@
  - **Help** - give the help for a command, leave blank to list all commands.
  - **Ping** - responds pong, useful for checking if bot is alive.
  - **Top** - lists the top n posts in r/uktrees, maximum of 10.
- - **Where** - will tell you if this user is registered on the map and tell you their location.
+ - **Where** - will tell you if this user is registered on the map and tell you their location -- **work in progress**.
 
  ## Roadmap for the future.
 
