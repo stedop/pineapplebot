@@ -13,7 +13,12 @@ export default class Toy {
         this.boot();
     }
 
+    /**
+     * @returns {{}}
+     */
     provides(){}
+
+
     boot(){}
 
 

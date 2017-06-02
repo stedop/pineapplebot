@@ -10,10 +10,10 @@ export default class DiscordRouter {
      * @param discord {Discord.client}
      * @param dot {Dot}
      * @param reddit {Snoowrap}
-     * @param commandPrefix {string}
+     * @param config {Config}
      * @returns {DiscordRouter}
      */
-    constructor( routes,  discord, dot, reddit, commandPrefix = '!') {
+    constructor( routes,  discord, dot, reddit, config) {
         /**
          *
          * @type {Discord.client}
@@ -47,7 +47,7 @@ export default class DiscordRouter {
          * @type {string}
          * @private
          */
-        this.__commandPrefix = commandPrefix;
+        this.__commandPrefix = config.get('Discord.commandPrefix');
 
         this.parseRoutes(routes);
 

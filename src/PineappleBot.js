@@ -5,12 +5,7 @@ import Snoowrap from 'snoowrap';
 import Discord from 'discord.js';
 import Dot from 'dot';
 //import DateFormat from 'dateformat';
-import DiscordRouter from './DiscordRouter';
 
-import Help from './Discord/Help';
-import Ping from './Discord/Ping';
-import Top from './Discord/Top';
-import Where from './Discord/Where';
 
 export default class bot {
 
@@ -53,16 +48,7 @@ export default class bot {
          */
         this.__dot = this.__initTemplateEngine();
 
-        /**
-         *
-         * @type {{}}
-         */
-        this.discordCommands = {
-            'help': Help,
-            'ping': Ping,
-            'top': Top,
-            'where': Where
-        };
+
 
         /**
          * @type {DiscordRouter}
