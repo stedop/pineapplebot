@@ -161,8 +161,7 @@ export default class bot {
      */
     __initBotEvents() {
         this.__discord.on( 'ready', () => {
-            console.log( 'Logged in!' );
-            console.log( 'type ' + this.commandPrefix + 'help in Discord for a this.discordCommands list.' );
+            console.log( 'Logged in to discord!' );
             this
                 .__discord.user
                 .setGame( this.commandPrefix + 'help' )

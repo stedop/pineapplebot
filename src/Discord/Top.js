@@ -21,7 +21,6 @@ export default class Top extends DiscordCommand {
      * @param params {{}}
      */
     process( message, params ) {
-console.log('suffix', this.suffix);
         let n = 5;
         if (this.suffix) {
             n = parseInt(this.suffix);

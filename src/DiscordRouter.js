@@ -88,7 +88,6 @@ export default class DiscordRouter {
      * @param msg Discord.Message
      */
     checkMessagesForCommand( msg) {
-        console.log('routes', this.__routes);
         //check if message is a command
         if ( this.isCommand(msg) === true ) {
             return this.match(msg);

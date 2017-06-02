@@ -227,8 +227,7 @@ var bot = function () {
             var _this = this;
 
             this.__discord.on('ready', function () {
-                console.log('Logged in!');
-                console.log('type ' + _this.commandPrefix + 'help in Discord for a this.discordCommands list.');
+                console.log('Logged in to discord!');
                 _this.__discord.user.setGame(_this.commandPrefix + 'help').catch(function (error) {
                     throw error;
                 });
@@ -285,29 +284,6 @@ var bot = function () {
 }();
 
 exports.default = bot;
-//# sourceMappingURL=PineappleBot.js.map
-//# sourceMappingURL=PineappleBot.js.map
-//# sourceMappingURL=PineappleBot.js.map
-//# sourceMappingURL=PineappleBot.js.map
-//# sourceMappingURL=PineappleBot.js.map
-//# sourceMappingURL=PineappleBot.js.map
-//# sourceMappingURL=PineappleBot.js.map
-//# sourceMappingURL=PineappleBot.js.map
-//# sourceMappingURL=PineappleBot.js.map
-//# sourceMappingURL=PineappleBot.js.map
-//# sourceMappingURL=PineappleBot.js.map
-//# sourceMappingURL=PineappleBot.js.map
-//# sourceMappingURL=PineappleBot.js.map
-//# sourceMappingURL=PineappleBot.js.map
-//# sourceMappingURL=PineappleBot.js.map
-//# sourceMappingURL=PineappleBot.js.map
-//# sourceMappingURL=PineappleBot.js.map
-//# sourceMappingURL=PineappleBot.js.map
-//# sourceMappingURL=PineappleBot.js.map
-//# sourceMappingURL=PineappleBot.js.map
-//# sourceMappingURL=PineappleBot.js.map
-//# sourceMappingURL=PineappleBot.js.map
-//# sourceMappingURL=PineappleBot.js.map
 //# sourceMappingURL=PineappleBot.js.map
 //# sourceMappingURL=PineappleBot.js.map
 //# sourceMappingURL=PineappleBot.js.map

@@ -4,6 +4,10 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
+var _filter2 = require('lodash/filter');
+
+var _filter3 = _interopRequireDefault(_filter2);
+
 var _createClass = function () {
     function defineProperties(target, props) {
         for (var i = 0; i < props.length; i++) {
@@ -79,11 +83,20 @@ var Where = function (_DiscordCommand) {
         key: 'process',
         value: function process(message, params) {
             var username = this.suffix;
-            _axios2.default.get('https://www.zeemaps.com/emarkers?g=2551174&k=REGULAR&e=false&_dc=0.6138917768604712').then(function (response) {
-                console.log(response);
-            }, function (error) {
-                throw error;
-            });
+            if (username) {
+                _axios2.default.get('https://www.zeemaps.com/emarkers?g=2551174&k=REGULAR&e=false&_dc=0.6138917768604712').then(function (response) {
+                    var location = (0, _filter3.default)(response.data, { 'nm': username })[0];
+                    if (location) {
+                        message.channel.sendMessage(message.author + ' ' + username + ' is in ' + location.city);
+                    } else {
+                        message.channel.sendMessage(message.author + ' ' + username + ' not found on the map');
+                    }
+                }, function (error) {
+                    throw error;
+                });
+            } else {
+                message.channel.sendMessage(message.author + ' I need a name to search for eg. !where pineapplebot');
+            }
         }
     }]);
 
@@ -91,42 +104,6 @@ var Where = function (_DiscordCommand) {
 }(_DiscordCommand3.default);
 
 exports.default = Where;
-//# sourceMappingURL=Where.js.map
-//# sourceMappingURL=Where.js.map
-//# sourceMappingURL=Where.js.map
-//# sourceMappingURL=Where.js.map
-//# sourceMappingURL=Where.js.map
-//# sourceMappingURL=Where.js.map
-//# sourceMappingURL=Where.js.map
-//# sourceMappingURL=Where.js.map
-//# sourceMappingURL=Where.js.map
-//# sourceMappingURL=Where.js.map
-//# sourceMappingURL=Where.js.map
-//# sourceMappingURL=Where.js.map
-//# sourceMappingURL=Where.js.map
-//# sourceMappingURL=Where.js.map
-//# sourceMappingURL=Where.js.map
-//# sourceMappingURL=Where.js.map
-//# sourceMappingURL=Where.js.map
-//# sourceMappingURL=Where.js.map
-//# sourceMappingURL=Where.js.map
-//# sourceMappingURL=Where.js.map
-//# sourceMappingURL=Where.js.map
-//# sourceMappingURL=Where.js.map
-//# sourceMappingURL=Where.js.map
-//# sourceMappingURL=Where.js.map
-//# sourceMappingURL=Where.js.map
-//# sourceMappingURL=Where.js.map
-//# sourceMappingURL=Where.js.map
-//# sourceMappingURL=Where.js.map
-//# sourceMappingURL=Where.js.map
-//# sourceMappingURL=Where.js.map
-//# sourceMappingURL=Where.js.map
-//# sourceMappingURL=Where.js.map
-//# sourceMappingURL=Where.js.map
-//# sourceMappingURL=Where.js.map
-//# sourceMappingURL=Where.js.map
-//# sourceMappingURL=Where.js.map
 //# sourceMappingURL=Where.js.map
 //# sourceMappingURL=Where.js.map
 //# sourceMappingURL=Where.js.map

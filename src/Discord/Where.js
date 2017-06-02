@@ -1,4 +1,4 @@
-import { each } from 'lodash';
+import { filter, matchesProperty } from 'lodash';
 import DiscordCommand from './../DiscordCommand';
 import { Message } from 'discord.js';
 import axios from 'axios';
@@ -22,11 +22,22 @@ export default class Where extends DiscordCommand {
      */
     process( message, params ) {
         let username = this.suffix;
-        axios.get('https://www.zeemaps.com/emarkers?g=2551174&k=REGULAR&e=false&_dc=0.6138917768604712').then((response) => {
-                console.log(response);
-            },
-            (error) => {
-                throw error;
-            });
+        if (username) {
+            axios
+                .get( 'https://www.zeemaps.com/emarkers?g=2551174&k=REGULAR&e=false&_dc=0.6138917768604712' )
+                .then( ( response ) => {
+                    let location = filter( response.data, { 'nm': username } )[0];
+                    if ( location ) {
+                        message.channel.sendMessage( message.author + ' ' + username + ' is in ' + location.city );
+                    } else {
+                        message.channel.sendMessage( message.author + ' ' + username + ' not found on the map' );
+                    }
+                },
+                ( error ) => {
+                    throw error;
+                } );
+        } else {
+            message.channel.sendMessage( message.author + ' I need a name to search for eg. !where pineapplebot');
+        }
     }
 }

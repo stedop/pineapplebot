@@ -80,7 +80,6 @@ var Top = function (_DiscordCommand) {
         value: function process(message, params) {
             var _this2 = this;
 
-            console.log('suffix', this.suffix);
             var n = 5;
             if (this.suffix) {
                 n = parseInt(this.suffix);
@@ -113,37 +112,6 @@ var Top = function (_DiscordCommand) {
 }(_DiscordCommand3.default);
 
 exports.default = Top;
-//# sourceMappingURL=Top.js.map
-//# sourceMappingURL=Top.js.map
-//# sourceMappingURL=Top.js.map
-//# sourceMappingURL=Top.js.map
-//# sourceMappingURL=Top.js.map
-//# sourceMappingURL=Top.js.map
-//# sourceMappingURL=Top.js.map
-//# sourceMappingURL=Top.js.map
-//# sourceMappingURL=Top.js.map
-//# sourceMappingURL=Top.js.map
-//# sourceMappingURL=Top.js.map
-//# sourceMappingURL=Top.js.map
-//# sourceMappingURL=Top.js.map
-//# sourceMappingURL=Top.js.map
-//# sourceMappingURL=Top.js.map
-//# sourceMappingURL=Top.js.map
-//# sourceMappingURL=Top.js.map
-//# sourceMappingURL=Top.js.map
-//# sourceMappingURL=Top.js.map
-//# sourceMappingURL=Top.js.map
-//# sourceMappingURL=Top.js.map
-//# sourceMappingURL=Top.js.map
-//# sourceMappingURL=Top.js.map
-//# sourceMappingURL=Top.js.map
-//# sourceMappingURL=Top.js.map
-//# sourceMappingURL=Top.js.map
-//# sourceMappingURL=Top.js.map
-//# sourceMappingURL=Top.js.map
-//# sourceMappingURL=Top.js.map
-//# sourceMappingURL=Top.js.map
-//# sourceMappingURL=Top.js.map
 //# sourceMappingURL=Top.js.map
 //# sourceMappingURL=Top.js.map
 //# sourceMappingURL=Top.js.map

@@ -132,7 +132,6 @@ var DiscordRouter = function () {
     }, {
         key: 'checkMessagesForCommand',
         value: function checkMessagesForCommand(msg) {
-            console.log('routes', this.__routes);
             //check if message is a command
             if (this.isCommand(msg) === true) {
                 return this.match(msg);
@@ -183,40 +182,6 @@ var DiscordRouter = function () {
 }();
 
 exports.default = DiscordRouter;
-//# sourceMappingURL=DiscordRouter.js.map
-//# sourceMappingURL=DiscordRouter.js.map
-//# sourceMappingURL=DiscordRouter.js.map
-//# sourceMappingURL=DiscordRouter.js.map
-//# sourceMappingURL=DiscordRouter.js.map
-//# sourceMappingURL=DiscordRouter.js.map
-//# sourceMappingURL=DiscordRouter.js.map
-//# sourceMappingURL=DiscordRouter.js.map
-//# sourceMappingURL=DiscordRouter.js.map
-//# sourceMappingURL=DiscordRouter.js.map
-//# sourceMappingURL=DiscordRouter.js.map
-//# sourceMappingURL=DiscordRouter.js.map
-//# sourceMappingURL=DiscordRouter.js.map
-//# sourceMappingURL=DiscordRouter.js.map
-//# sourceMappingURL=DiscordRouter.js.map
-//# sourceMappingURL=DiscordRouter.js.map
-//# sourceMappingURL=DiscordRouter.js.map
-//# sourceMappingURL=DiscordRouter.js.map
-//# sourceMappingURL=DiscordRouter.js.map
-//# sourceMappingURL=DiscordRouter.js.map
-//# sourceMappingURL=DiscordRouter.js.map
-//# sourceMappingURL=DiscordRouter.js.map
-//# sourceMappingURL=DiscordRouter.js.map
-//# sourceMappingURL=DiscordRouter.js.map
-//# sourceMappingURL=DiscordRouter.js.map
-//# sourceMappingURL=DiscordRouter.js.map
-//# sourceMappingURL=DiscordRouter.js.map
-//# sourceMappingURL=DiscordRouter.js.map
-//# sourceMappingURL=DiscordRouter.js.map
-//# sourceMappingURL=DiscordRouter.js.map
-//# sourceMappingURL=DiscordRouter.js.map
-//# sourceMappingURL=DiscordRouter.js.map
-//# sourceMappingURL=DiscordRouter.js.map
-//# sourceMappingURL=DiscordRouter.js.map
 //# sourceMappingURL=DiscordRouter.js.map
 //# sourceMappingURL=DiscordRouter.js.map
 //# sourceMappingURL=DiscordRouter.js.map
