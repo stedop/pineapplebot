@@ -4,21 +4,11 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _defaults2 = require('lodash/defaults');
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _defaults3 = _interopRequireDefault(_defaults2);
+var _config = require('config');
 
-var _createClass = function () {
-    function defineProperties(target, props) {
-        for (var i = 0; i < props.length; i++) {
-            var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);
-        }
-    }return function (Constructor, protoProps, staticProps) {
-        if (protoProps) defineProperties(Constructor.prototype, protoProps);if (staticProps) defineProperties(Constructor, staticProps);return Constructor;
-    };
-}();
-//import DateFormat from 'dateformat';
-
+var _config2 = _interopRequireDefault(_config);
 
 var _snoowrap = require('snoowrap');
 
@@ -32,92 +22,32 @@ var _dot = require('dot');
 
 var _dot2 = _interopRequireDefault(_dot);
 
-var _DiscordRouter = require('./DiscordRouter');
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var _DiscordRouter2 = _interopRequireDefault(_DiscordRouter);
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var _Help = require('./Discord/Help');
+//import DateFormat from 'dateformat';
 
-var _Help2 = _interopRequireDefault(_Help);
-
-var _Ping = require('./Discord/Ping');
-
-var _Ping2 = _interopRequireDefault(_Ping);
-
-var _Top = require('./Discord/Top');
-
-var _Top2 = _interopRequireDefault(_Top);
-
-var _Where = require('./Discord/Where');
-
-var _Where2 = _interopRequireDefault(_Where);
-
-function _interopRequireDefault(obj) {
-    return obj && obj.__esModule ? obj : { default: obj };
-}
-
-function _classCallCheck(instance, Constructor) {
-    if (!(instance instanceof Constructor)) {
-        throw new TypeError("Cannot call a class as a function");
-    }
-}
 
 var bot = function () {
 
     /**
      * @summary initialises the bot
      *
-     * @param {string} [userAgent] A unique description of what your app does. This argument is not necessary when Snoowrap
-     is running in a browser.
-     * @param {string} [clientId] The client ID of your app (assigned by reddit)
-     * @param {string} [clientSecret] The client secret of your app (assigned by reddit). If you are using a refresh token
-     with an installed app (which does not have a client secret), pass an empty string as your `clientSecret`.
-     * @param {string} [refreshToken] A refresh token for your app.
-     * @param {string} [subreddit] The subreddit name we are going to be managing
-     * @param {string} [discordToken] Key for the stats api
-     * @param {string} [discordServer] The server to work in discord
-     * @param {string} [commandPrefix] The command prefix
+     * @param {Config} config
      */
-    function bot() {
-        var _ref = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
-            userAgent = _ref.userAgent,
-            clientId = _ref.clientId,
-            clientSecret = _ref.clientSecret,
-            refreshToken = _ref.refreshToken,
-            subreddit = _ref.subreddit,
-            discordToken = _ref.discordToken,
-            discordServer = _ref.discordServer,
-            commandPrefix = _ref.commandPrefix;
-
+    function bot(config) {
         _classCallCheck(this, bot);
 
-        if (clientId === undefined || clientSecret === undefined || refreshToken === undefined) {
-            throw new Error('Reddit Credentials not supplied, fuckwit');
+        if (typeof config !== 'Config') {
+            throw new Error('need a proper config thanks knobcheese');
         }
 
-        if (discordToken === undefined) {
-            throw new Error('Discord Token needed, dickhead');
-        }
-
-        (0, _defaults3.default)(this, {
-            userAgent,
-            clientId,
-            clientSecret,
-            refreshToken,
-            subreddit,
-            discordToken,
-            discordServer,
-            commandPrefix
-        }, {
-            userAgent: null,
-            clientId: null,
-            clientSecret: null,
-            refreshToken: null,
-            subbreddit: 'uktrees',
-            discordToken: null,
-            discordServer: '#uktrees',
-            commandPrefix: '!'
-        });
+        /**
+         *
+         * @type {Config}
+         */
+        this.config = config;
 
         /**
          * The reddit client
@@ -142,17 +72,6 @@ var bot = function () {
         this.__dot = this.__initTemplateEngine();
 
         /**
-         *
-         * @type {{}}
-         */
-        this.discordCommands = {
-            'help': _Help2.default,
-            'ping': _Ping2.default,
-            'top': _Top2.default,
-            'where': _Where2.default
-        };
-
-        /**
          * @type {DiscordRouter}
          * @priate
          */
@@ -167,6 +86,7 @@ var bot = function () {
      * @returns Snoowrap
      * @private
      */
+
 
     _createClass(bot, [{
         key: '__initRedditClient',
@@ -212,7 +132,7 @@ var bot = function () {
     }, {
         key: '__initDiscordRouter',
         value: function __initDiscordRouter() {
-            return new _DiscordRouter2.default(this.discordCommands, this.__discord, this.__dot, this.__reddit);
+            return new DiscordRouter(this.discordCommands, this.__discord, this.__dot, this.__reddit);
         }
 
         /**
@@ -298,7 +218,4 @@ var bot = function () {
 }();
 
 exports.default = bot;
-//# sourceMappingURL=PineappleBot.js.map
-//# sourceMappingURL=PineappleBot.js.map
-//# sourceMappingURL=PineappleBot.js.map
 //# sourceMappingURL=PineappleBot.js.map
