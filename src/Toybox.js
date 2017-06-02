@@ -29,6 +29,7 @@ export default class Toybox {
     add(serviceName, provides = () => { return false; } ) {
         if (!this.has(serviceName)) {
             this.__services[serviceName] = provides;
+            return;
         }
 
         throw new Error('Service ' + serviceName + ' already exists');
@@ -41,11 +42,12 @@ export default class Toybox {
      * @private
      */
     __addProvider(provider) {
-        let providerObject = new provider();
+
+        let providerClass = require ('./ToyBox/' + provider).default;
+        let providerObject = new providerClass(this, this.__config);
         providerObject.boot();
         let provides = providerObject.provides();
-
-        each(provides, ( serviceName, item) => {
+        each(provides, ( item, serviceName ) => {
             this.add(serviceName, () => { return item; } );
         });
 
@@ -57,7 +59,7 @@ export default class Toybox {
      * @returns {*}
      */
     has(serviceName = '') {
-        return (this.__services[serviceName]);
+        return ( typeof this.__services[serviceName] !== 'undefined' );
     }
 
     /**

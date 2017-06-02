@@ -76,7 +76,7 @@ export default class Discord extends Toy {
      * @returns {DiscordRouter}
      */
     setupRouter() {
-        return new DiscordRouter( this.discordCommands, ToyBox.get('dot'), Toybox.get('reddit'), this.__config);
+        return new DiscordRouter( this.discordCommands, this.__discord, this.__toybox.get('dot'), this.__toybox.get('reddit'), this.__config);
     }
 
     /**

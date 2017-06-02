@@ -7,7 +7,7 @@ export default class DiscordRouter {
     /**
      *
      * @param routes {}
-     * @param discord {Discord.client}
+     * @param discord {Client}
      * @param dot {Dot}
      * @param reddit {Snoowrap}
      * @param config {Config}
@@ -16,7 +16,7 @@ export default class DiscordRouter {
     constructor( routes,  discord, dot, reddit, config) {
         /**
          *
-         * @type {Discord.client}
+         * @type {Client}
          * @private
          */
         this.__discord = discord;

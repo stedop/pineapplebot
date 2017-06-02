@@ -8,18 +8,32 @@ var _each2 = require('lodash/each');
 
 var _each3 = _interopRequireDefault(_each2);
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+var _createClass = function () {
+    function defineProperties(target, props) {
+        for (var i = 0; i < props.length; i++) {
+            var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);
+        }
+    }return function (Constructor, protoProps, staticProps) {
+        if (protoProps) defineProperties(Constructor.prototype, protoProps);if (staticProps) defineProperties(Constructor, staticProps);return Constructor;
+    };
+}();
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _interopRequireDefault(obj) {
+    return obj && obj.__esModule ? obj : { default: obj };
+}
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+function _classCallCheck(instance, Constructor) {
+    if (!(instance instanceof Constructor)) {
+        throw new TypeError("Cannot call a class as a function");
+    }
+}
 
 var DiscordRouter = function () {
 
     /**
      *
      * @param routes {}
-     * @param discord {Discord.client}
+     * @param discord {Client}
      * @param dot {Dot}
      * @param reddit {Snoowrap}
      * @param config {Config}
@@ -30,7 +44,7 @@ var DiscordRouter = function () {
 
         /**
          *
-         * @type {Discord.client}
+         * @type {Client}
          * @private
          */
         this.__discord = discord;
@@ -72,7 +86,6 @@ var DiscordRouter = function () {
      *
      * @param routes {DiscordCommand}
      */
-
 
     _createClass(DiscordRouter, [{
         key: 'parseRoutes',
@@ -167,4 +180,17 @@ var DiscordRouter = function () {
 }();
 
 exports.default = DiscordRouter;
+//# sourceMappingURL=DiscordRouter.js.map
+//# sourceMappingURL=DiscordRouter.js.map
+//# sourceMappingURL=DiscordRouter.js.map
+//# sourceMappingURL=DiscordRouter.js.map
+//# sourceMappingURL=DiscordRouter.js.map
+//# sourceMappingURL=DiscordRouter.js.map
+//# sourceMappingURL=DiscordRouter.js.map
+//# sourceMappingURL=DiscordRouter.js.map
+//# sourceMappingURL=DiscordRouter.js.map
+//# sourceMappingURL=DiscordRouter.js.map
+//# sourceMappingURL=DiscordRouter.js.map
+//# sourceMappingURL=DiscordRouter.js.map
+//# sourceMappingURL=DiscordRouter.js.map
 //# sourceMappingURL=DiscordRouter.js.map

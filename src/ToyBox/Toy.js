@@ -15,7 +15,7 @@ export default class Toy {
          *
          * @type {Toybox}
          */
-        this.toybox = toybox;
+        this.__toybox = toybox;
 
         /**
          * 
