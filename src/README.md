@@ -18,6 +18,7 @@
  1. The service provider needs to be properly realised, it works at the moment but improvments can be made
  2. More commands can be written I'd really like to build it so the commands can be "dropped in".
  3. I think the router could be sped up also
+ 4. The config system can be better, I don't like so many options for the bot start.
  
  ##Contributing
  
