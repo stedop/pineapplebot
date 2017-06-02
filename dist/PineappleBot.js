@@ -243,6 +243,13 @@ var bot = function () {
                 process.exit(1); //exit node.js with an error
             });
         }
+
+        /**
+         *
+         * @param msg { Discord.Message }
+         * @returns {*}
+         */
+
     }, {
         key: 'handleMessage',
         value: function handleMessage(msg) {
@@ -254,9 +261,11 @@ var bot = function () {
                         return cmd.process(msg, { subreddit: this.subreddit });
                     }
 
-                    msg.channel.sendMessage('Not recognized as a command! Try ' + this.commandPrefix + 'help').then(function (message) {
-                        return message.delete(5000);
-                    });
+                    if (msg.content.substring(0, this.commandPrefix.length) === this.commandPrefix) {
+                        msg.channel.sendMessage('Not recognized as a command! Try ' + this.commandPrefix + 'help').then(function (message) {
+                            return message.delete(5000);
+                        });
+                    }
                 }
 
                 return false;
@@ -269,6 +278,11 @@ var bot = function () {
                 throw e;
             }
         }
+
+        /**
+         *
+         */
+
     }, {
         key: 'go',
         value: function go() {
@@ -284,11 +298,6 @@ var bot = function () {
 }();
 
 exports.default = bot;
-//# sourceMappingURL=PineappleBot.js.map
-//# sourceMappingURL=PineappleBot.js.map
-//# sourceMappingURL=PineappleBot.js.map
-//# sourceMappingURL=PineappleBot.js.map
-//# sourceMappingURL=PineappleBot.js.map
 //# sourceMappingURL=PineappleBot.js.map
 //# sourceMappingURL=PineappleBot.js.map
 //# sourceMappingURL=PineappleBot.js.map

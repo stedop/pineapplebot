@@ -97,7 +97,3 @@ exports.default = Ping;
 //# sourceMappingURL=Ping.js.map
 //# sourceMappingURL=Ping.js.map
 //# sourceMappingURL=Ping.js.map
-//# sourceMappingURL=Ping.js.map
-//# sourceMappingURL=Ping.js.map
-//# sourceMappingURL=Ping.js.map
-//# sourceMappingURL=Ping.js.map

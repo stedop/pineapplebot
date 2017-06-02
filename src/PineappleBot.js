@@ -179,6 +179,11 @@ export default class bot {
         } );
     }
 
+    /**
+     *
+     * @param msg { Discord.Message }
+     * @returns {*}
+     */
     handleMessage( msg ) {
         try {
             if (msg.author !== this.__discord.user) {
@@ -188,9 +193,11 @@ export default class bot {
                     return cmd.process( msg, { subreddit: this.subreddit } );
                 }
 
-                msg.channel.sendMessage(
-                    'Not recognized as a command! Try ' + this.commandPrefix + 'help' ).then( (message => message.delete( 5000 ))
-                );
+                if (msg.content.substring( 0, this.commandPrefix.length ) === this.commandPrefix) {
+                    msg.channel.sendMessage(
+                        'Not recognized as a command! Try ' + this.commandPrefix + 'help' ).then( (message => message.delete( 5000 ))
+                    );
+                }
             }
 
             return false;
@@ -204,6 +211,9 @@ export default class bot {
         }
     }
 
+    /**
+     *
+     */
     go() {
         this.__discord.login( this.discordToken )
             .then( ( respsonse ) => {
