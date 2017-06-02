@@ -1,6 +1,6 @@
 'use strict';
 
-import { defaults } from 'lodash';
+import Config from 'config';
 import Snoowrap from 'snoowrap';
 import Discord from 'discord.js';
 import Dot from 'dot';
@@ -17,54 +17,19 @@ export default class bot {
     /**
      * @summary initialises the bot
      *
-     * @param {string} [userAgent] A unique description of what your app does. This argument is not necessary when Snoowrap
-     is running in a browser.
-     * @param {string} [clientId] The client ID of your app (assigned by reddit)
-     * @param {string} [clientSecret] The client secret of your app (assigned by reddit). If you are using a refresh token
-     with an installed app (which does not have a client secret), pass an empty string as your `clientSecret`.
-     * @param {string} [refreshToken] A refresh token for your app.
-     * @param {string} [subreddit] The subreddit name we are going to be managing
-     * @param {string} [discordToken] Key for the stats api
-     * @param {string} [discordServer] The server to work in discord
-     * @param {string} [commandPrefix] The command prefix
+     * @param {Config} config
      */
-    constructor( {
-        userAgent,
-        clientId,
-        clientSecret,
-        refreshToken,
-        subreddit,
-        discordToken,
-        discordServer,
-        commandPrefix
-    } = {} ) {
-        if ( clientId === undefined || clientSecret === undefined || refreshToken === undefined ) {
-            throw new Error( 'Reddit Credentials not supplied, fuckwit' );
+    constructor( config ) {
+
+        if (typeof config !== 'Config') {
+            throw new Error('need a proper config thanks knobcheese');
         }
 
-        if ( discordToken === undefined ) {
-            throw new Error( 'Discord Token needed, dickhead' );
-        }
-
-        defaults( this, {
-            userAgent,
-            clientId,
-            clientSecret,
-            refreshToken,
-            subreddit,
-            discordToken,
-            discordServer,
-            commandPrefix
-        }, {
-            userAgent: null,
-            clientId: null,
-            clientSecret: null,
-            refreshToken: null,
-            subbreddit: 'uktrees',
-            discordToken: null,
-            discordServer: '#uktrees',
-            commandPrefix: '!'
-        } );
+        /**
+         *
+         * @type {Config}
+         */
+        this.config = config;
 
         /**
          * The reddit client
