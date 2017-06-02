@@ -6,7 +6,7 @@
  I am basing this off the MVC architecture but unlike for web apps I think MVC works well for a node bot due to the
  stateful nature of a javascript app.
 
- Included are some commands for the UKTrees (unofficial) server.
+ Included are some commands for the UKTrees (unofficial) discord server.
 
  - **Help** - give the help for a command, leave blank to list all commands.
  - **Ping** - responds pong, useful for checking if bot is alive.
