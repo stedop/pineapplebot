@@ -33,20 +33,18 @@ var DiscordRouter = function () {
     /**
      *
      * @param routes {}
-     * @param discord {Discord.client}
+     * @param discord {Client}
      * @param dot {Dot}
      * @param reddit {Snoowrap}
-     * @param commandPrefix {string}
+     * @param config {Config}
      * @returns {DiscordRouter}
      */
-    function DiscordRouter(routes, discord, dot, reddit) {
-        var commandPrefix = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : '!';
-
+    function DiscordRouter(routes, discord, dot, reddit, config) {
         _classCallCheck(this, DiscordRouter);
 
         /**
          *
-         * @type {Discord.client}
+         * @type {Client}
          * @private
          */
         this.__discord = discord;
@@ -77,7 +75,7 @@ var DiscordRouter = function () {
          * @type {string}
          * @private
          */
-        this.__commandPrefix = commandPrefix;
+        this.__commandPrefix = config.get('Discord.commandPrefix');
 
         this.parseRoutes(routes);
 
@@ -182,6 +180,63 @@ var DiscordRouter = function () {
 }();
 
 exports.default = DiscordRouter;
+//# sourceMappingURL=DiscordRouter.js.map
+//# sourceMappingURL=DiscordRouter.js.map
+//# sourceMappingURL=DiscordRouter.js.map
+//# sourceMappingURL=DiscordRouter.js.map
+//# sourceMappingURL=DiscordRouter.js.map
+//# sourceMappingURL=DiscordRouter.js.map
+//# sourceMappingURL=DiscordRouter.js.map
+//# sourceMappingURL=DiscordRouter.js.map
+//# sourceMappingURL=DiscordRouter.js.map
+//# sourceMappingURL=DiscordRouter.js.map
+//# sourceMappingURL=DiscordRouter.js.map
+//# sourceMappingURL=DiscordRouter.js.map
+//# sourceMappingURL=DiscordRouter.js.map
+//# sourceMappingURL=DiscordRouter.js.map
+//# sourceMappingURL=DiscordRouter.js.map
+//# sourceMappingURL=DiscordRouter.js.map
+//# sourceMappingURL=DiscordRouter.js.map
+//# sourceMappingURL=DiscordRouter.js.map
+//# sourceMappingURL=DiscordRouter.js.map
+//# sourceMappingURL=DiscordRouter.js.map
+//# sourceMappingURL=DiscordRouter.js.map
+//# sourceMappingURL=DiscordRouter.js.map
+//# sourceMappingURL=DiscordRouter.js.map
+//# sourceMappingURL=DiscordRouter.js.map
+//# sourceMappingURL=DiscordRouter.js.map
+//# sourceMappingURL=DiscordRouter.js.map
+//# sourceMappingURL=DiscordRouter.js.map
+//# sourceMappingURL=DiscordRouter.js.map
+//# sourceMappingURL=DiscordRouter.js.map
+//# sourceMappingURL=DiscordRouter.js.map
+//# sourceMappingURL=DiscordRouter.js.map
+//# sourceMappingURL=DiscordRouter.js.map
+//# sourceMappingURL=DiscordRouter.js.map
+//# sourceMappingURL=DiscordRouter.js.map
+//# sourceMappingURL=DiscordRouter.js.map
+//# sourceMappingURL=DiscordRouter.js.map
+//# sourceMappingURL=DiscordRouter.js.map
+//# sourceMappingURL=DiscordRouter.js.map
+//# sourceMappingURL=DiscordRouter.js.map
+//# sourceMappingURL=DiscordRouter.js.map
+//# sourceMappingURL=DiscordRouter.js.map
+//# sourceMappingURL=DiscordRouter.js.map
+//# sourceMappingURL=DiscordRouter.js.map
+//# sourceMappingURL=DiscordRouter.js.map
+//# sourceMappingURL=DiscordRouter.js.map
+//# sourceMappingURL=DiscordRouter.js.map
+//# sourceMappingURL=DiscordRouter.js.map
+//# sourceMappingURL=DiscordRouter.js.map
+//# sourceMappingURL=DiscordRouter.js.map
+//# sourceMappingURL=DiscordRouter.js.map
+//# sourceMappingURL=DiscordRouter.js.map
+//# sourceMappingURL=DiscordRouter.js.map
+//# sourceMappingURL=DiscordRouter.js.map
+//# sourceMappingURL=DiscordRouter.js.map
+//# sourceMappingURL=DiscordRouter.js.map
+//# sourceMappingURL=DiscordRouter.js.map
+//# sourceMappingURL=DiscordRouter.js.map
 //# sourceMappingURL=DiscordRouter.js.map
 //# sourceMappingURL=DiscordRouter.js.map
 //# sourceMappingURL=DiscordRouter.js.map

@@ -136,3 +136,6 @@ exports.default = Toy;
 //# sourceMappingURL=Toy.js.map
 //# sourceMappingURL=Toy.js.map
 //# sourceMappingURL=Toy.js.map
+//# sourceMappingURL=Toy.js.map
+//# sourceMappingURL=Toy.js.map
+//# sourceMappingURL=Toy.js.map

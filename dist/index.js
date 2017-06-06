@@ -12,14 +12,75 @@ function _interopRequireDefault(obj) {
     return obj && obj.__esModule ? obj : { default: obj };
 }
 
-var options = _config2.default.get('Bot');
-
 try {
-    var pineAppleBot = new _PineappleBot2.default(options);
+    var pineAppleBot = new _PineappleBot2.default(_config2.default);
     pineAppleBot.go();
 } catch (error) {
     console.log('error', error.stack);
 }
+//# sourceMappingURL=index.js.map
+//# sourceMappingURL=index.js.map
+//# sourceMappingURL=index.js.map
+//# sourceMappingURL=index.js.map
+//# sourceMappingURL=index.js.map
+//# sourceMappingURL=index.js.map
+//# sourceMappingURL=index.js.map
+//# sourceMappingURL=index.js.map
+//# sourceMappingURL=index.js.map
+//# sourceMappingURL=index.js.map
+//# sourceMappingURL=index.js.map
+//# sourceMappingURL=index.js.map
+//# sourceMappingURL=index.js.map
+//# sourceMappingURL=index.js.map
+//# sourceMappingURL=index.js.map
+//# sourceMappingURL=index.js.map
+//# sourceMappingURL=index.js.map
+//# sourceMappingURL=index.js.map
+//# sourceMappingURL=index.js.map
+//# sourceMappingURL=index.js.map
+//# sourceMappingURL=index.js.map
+//# sourceMappingURL=index.js.map
+//# sourceMappingURL=index.js.map
+//# sourceMappingURL=index.js.map
+//# sourceMappingURL=index.js.map
+//# sourceMappingURL=index.js.map
+//# sourceMappingURL=index.js.map
+//# sourceMappingURL=index.js.map
+//# sourceMappingURL=index.js.map
+//# sourceMappingURL=index.js.map
+//# sourceMappingURL=index.js.map
+//# sourceMappingURL=index.js.map
+//# sourceMappingURL=index.js.map
+//# sourceMappingURL=index.js.map
+//# sourceMappingURL=index.js.map
+//# sourceMappingURL=index.js.map
+//# sourceMappingURL=index.js.map
+//# sourceMappingURL=index.js.map
+//# sourceMappingURL=index.js.map
+//# sourceMappingURL=index.js.map
+//# sourceMappingURL=index.js.map
+//# sourceMappingURL=index.js.map
+//# sourceMappingURL=index.js.map
+//# sourceMappingURL=index.js.map
+//# sourceMappingURL=index.js.map
+//# sourceMappingURL=index.js.map
+//# sourceMappingURL=index.js.map
+//# sourceMappingURL=index.js.map
+//# sourceMappingURL=index.js.map
+//# sourceMappingURL=index.js.map
+//# sourceMappingURL=index.js.map
+//# sourceMappingURL=index.js.map
+//# sourceMappingURL=index.js.map
+//# sourceMappingURL=index.js.map
+//# sourceMappingURL=index.js.map
+//# sourceMappingURL=index.js.map
+//# sourceMappingURL=index.js.map
+//# sourceMappingURL=index.js.map
+//# sourceMappingURL=index.js.map
+//# sourceMappingURL=index.js.map
+//# sourceMappingURL=index.js.map
+//# sourceMappingURL=index.js.map
+//# sourceMappingURL=index.js.map
 //# sourceMappingURL=index.js.map
 //# sourceMappingURL=index.js.map
 //# sourceMappingURL=index.js.map

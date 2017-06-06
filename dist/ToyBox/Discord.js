@@ -107,7 +107,7 @@ var Discord = function (_Toy) {
 
             this.__discord.on('ready', function () {
                 console.log('Logged in to discord!');
-                _this2.__discord.user.setGame(_this2.commandPrefix + 'help').catch(function (error) {
+                _this2.__discord.user.setGame(_this2.__config.get('Discord.commandPrefix') + 'help').catch(function (error) {
                     throw error;
                 });
             });
@@ -188,6 +188,10 @@ var Discord = function (_Toy) {
 }(_Toy3.default);
 
 exports.default = Discord;
+//# sourceMappingURL=Discord.js.map
+//# sourceMappingURL=Discord.js.map
+//# sourceMappingURL=Discord.js.map
+//# sourceMappingURL=Discord.js.map
 //# sourceMappingURL=Discord.js.map
 //# sourceMappingURL=Discord.js.map
 //# sourceMappingURL=Discord.js.map
