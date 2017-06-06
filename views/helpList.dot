@@ -1,4 +1,4 @@
-'**Available Commands:**'
+**Available Commands:**
 
 {{~Object.keys(it.commands) :command}}
 **{{=it.commands[command].name}}** - *{{=it.prefix}}{{=it.commands[command].syntax}}*
