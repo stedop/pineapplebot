@@ -79,5 +79,3 @@ exports.default = DiscordCommand;
 //# sourceMappingURL=DiscordCommand.js.map
 //# sourceMappingURL=DiscordCommand.js.map
 //# sourceMappingURL=DiscordCommand.js.map
-//# sourceMappingURL=DiscordCommand.js.map
-//# sourceMappingURL=DiscordCommand.js.map
