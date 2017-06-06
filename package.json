@@ -5,6 +5,9 @@
   "main": "index.js",
   "author": "Stephen Dop <dopstephen@gmail.com>",
   "license": "MIT",
+  "scripts": {
+    "install": "node_modules/.bin/babel src/ --out-dir dist/ --source-maps"
+  },
   "dependencies": {
     "axios": "^0.16.1",
     "__config": "^1.26.1",

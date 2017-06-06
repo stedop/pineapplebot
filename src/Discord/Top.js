@@ -27,7 +27,7 @@ export default class Top extends DiscordCommand {
         }
         this
             .__reddit
-            .getSubreddit( params.subreddit )
+            .getSubreddit( this.__config.get('Reddit.subreddit') )
             .getHot()
             .then(
                 ( response ) => {

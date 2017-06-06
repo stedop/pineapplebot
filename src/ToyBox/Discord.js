@@ -90,7 +90,7 @@ export default class Discord extends Toy {
                 let cmd = this.__router.checkMessagesForCommand( msg );
 
                 if ( cmd !== false ) {
-                    return cmd.process( msg, { subreddit: this.subreddit } );
+                    return cmd.process( msg );
                 }
 
                 if (msg.content.substring( 0, this.commandPrefix.length ) === this.commandPrefix) {
