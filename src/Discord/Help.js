@@ -30,7 +30,7 @@ export default class Help extends DiscordCommand {
             cmds = sortBy( routes, [ '' ] );
         }
 
-        let contents = this.__dot.helpList( { 'commands': cmds } );
+        let contents = this.__dot.helpList( { 'commands': cmds, 'prefix': this.__config.get('Discord.commandPrefix') } );
         this.sendBatchedMessage( contents, message );
     }
 

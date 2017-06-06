@@ -10,7 +10,7 @@ export default class Where extends DiscordCommand {
      */
     boot() {
         this.name = 'Where';
-        this.syntax = 'where <username> ';
+        this.syntax = 'where <username>';
         this.description = 'will tell you if this user is registered on the map and tell you their location';
         return this;
     }

@@ -10,7 +10,7 @@ export default class Top extends DiscordCommand {
      */
     boot() {
         this.name = 'Top';
-        this.syntax = 'top <number of posts> ';
+        this.syntax = 'top <number of posts>';
         this.description = 'lists the top n posts in uktrees, maximum of 10';
         return this;
     }
