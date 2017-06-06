@@ -49,6 +49,14 @@ export default class DiscordRouter {
          */
         this.__commandPrefix = config.get('Discord.commandPrefix');
 
+
+        /**
+         *
+         * @type {Config}
+         * @private
+         */
+        this.__config = config;
+
         this.parseRoutes(routes);
 
         return this;
@@ -60,7 +68,7 @@ export default class DiscordRouter {
      */
     parseRoutes(routes) {
         each(routes, (route) => {
-            route = new route(this.__discord, this.__dot, this.__reddit).boot();
+            route = new route(this.__discord, this.__dot, this.__reddit, this.__config).boot();
             let key = route.name.toLowerCase();
             this.__routes[key] = route;
         });
