@@ -92,9 +92,7 @@ var Toybox = function () {
             providerObject.boot();
             var provides = providerObject.provides();
             (0, _each3.default)(provides, function (item, serviceName) {
-                _this2.add(serviceName, function () {
-                    return item;
-                });
+                _this2.add(serviceName, item);
             });
         }
 
@@ -135,6 +133,40 @@ var Toybox = function () {
 }();
 
 exports.default = Toybox;
+//# sourceMappingURL=Toybox.js.map
+//# sourceMappingURL=Toybox.js.map
+//# sourceMappingURL=Toybox.js.map
+//# sourceMappingURL=Toybox.js.map
+//# sourceMappingURL=Toybox.js.map
+//# sourceMappingURL=Toybox.js.map
+//# sourceMappingURL=Toybox.js.map
+//# sourceMappingURL=Toybox.js.map
+//# sourceMappingURL=Toybox.js.map
+//# sourceMappingURL=Toybox.js.map
+//# sourceMappingURL=Toybox.js.map
+//# sourceMappingURL=Toybox.js.map
+//# sourceMappingURL=Toybox.js.map
+//# sourceMappingURL=Toybox.js.map
+//# sourceMappingURL=Toybox.js.map
+//# sourceMappingURL=Toybox.js.map
+//# sourceMappingURL=Toybox.js.map
+//# sourceMappingURL=Toybox.js.map
+//# sourceMappingURL=Toybox.js.map
+//# sourceMappingURL=Toybox.js.map
+//# sourceMappingURL=Toybox.js.map
+//# sourceMappingURL=Toybox.js.map
+//# sourceMappingURL=Toybox.js.map
+//# sourceMappingURL=Toybox.js.map
+//# sourceMappingURL=Toybox.js.map
+//# sourceMappingURL=Toybox.js.map
+//# sourceMappingURL=Toybox.js.map
+//# sourceMappingURL=Toybox.js.map
+//# sourceMappingURL=Toybox.js.map
+//# sourceMappingURL=Toybox.js.map
+//# sourceMappingURL=Toybox.js.map
+//# sourceMappingURL=Toybox.js.map
+//# sourceMappingURL=Toybox.js.map
+//# sourceMappingURL=Toybox.js.map
 //# sourceMappingURL=Toybox.js.map
 //# sourceMappingURL=Toybox.js.map
 //# sourceMappingURL=Toybox.js.map

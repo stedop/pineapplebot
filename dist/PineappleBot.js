@@ -63,8 +63,8 @@ var bot = function () {
         key: 'go',
         value: function go() {
             var discord = this.__toybox.get('discord');
-            discord.login(this.discordToken).then(function (respsonse) {
-                console.log('response', respsonse);
+            discord.login(this.__config.get('Discord.discordToken')).then(function (response) {
+                console.log('response', response);
             }).catch(function (error) {
                 throw error;
             });
@@ -75,6 +75,47 @@ var bot = function () {
 }();
 
 exports.default = bot;
+//# sourceMappingURL=PineappleBot.js.map
+//# sourceMappingURL=PineappleBot.js.map
+//# sourceMappingURL=PineappleBot.js.map
+//# sourceMappingURL=PineappleBot.js.map
+//# sourceMappingURL=PineappleBot.js.map
+//# sourceMappingURL=PineappleBot.js.map
+//# sourceMappingURL=PineappleBot.js.map
+//# sourceMappingURL=PineappleBot.js.map
+//# sourceMappingURL=PineappleBot.js.map
+//# sourceMappingURL=PineappleBot.js.map
+//# sourceMappingURL=PineappleBot.js.map
+//# sourceMappingURL=PineappleBot.js.map
+//# sourceMappingURL=PineappleBot.js.map
+//# sourceMappingURL=PineappleBot.js.map
+//# sourceMappingURL=PineappleBot.js.map
+//# sourceMappingURL=PineappleBot.js.map
+//# sourceMappingURL=PineappleBot.js.map
+//# sourceMappingURL=PineappleBot.js.map
+//# sourceMappingURL=PineappleBot.js.map
+//# sourceMappingURL=PineappleBot.js.map
+//# sourceMappingURL=PineappleBot.js.map
+//# sourceMappingURL=PineappleBot.js.map
+//# sourceMappingURL=PineappleBot.js.map
+//# sourceMappingURL=PineappleBot.js.map
+//# sourceMappingURL=PineappleBot.js.map
+//# sourceMappingURL=PineappleBot.js.map
+//# sourceMappingURL=PineappleBot.js.map
+//# sourceMappingURL=PineappleBot.js.map
+//# sourceMappingURL=PineappleBot.js.map
+//# sourceMappingURL=PineappleBot.js.map
+//# sourceMappingURL=PineappleBot.js.map
+//# sourceMappingURL=PineappleBot.js.map
+//# sourceMappingURL=PineappleBot.js.map
+//# sourceMappingURL=PineappleBot.js.map
+//# sourceMappingURL=PineappleBot.js.map
+//# sourceMappingURL=PineappleBot.js.map
+//# sourceMappingURL=PineappleBot.js.map
+//# sourceMappingURL=PineappleBot.js.map
+//# sourceMappingURL=PineappleBot.js.map
+//# sourceMappingURL=PineappleBot.js.map
+//# sourceMappingURL=PineappleBot.js.map
 //# sourceMappingURL=PineappleBot.js.map
 //# sourceMappingURL=PineappleBot.js.map
 //# sourceMappingURL=PineappleBot.js.map

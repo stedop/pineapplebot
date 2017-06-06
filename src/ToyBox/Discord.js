@@ -45,7 +45,7 @@ export default class Discord extends Toy {
             console.log( 'Logged in to discord!' );
             this
                 .__discord.user
-                .setGame( this.commandPrefix + 'help' )
+                .setGame( this.__config.get('Discord.commandPrefix') + 'help' )
                 .catch(
                     ( error ) => {
                         throw(error);

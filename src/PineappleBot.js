@@ -30,9 +30,9 @@ export default class bot {
      */
     go() {
         let discord = this.__toybox.get('discord');
-        discord.login( this.discordToken )
-            .then( ( respsonse ) => {
-                console.log( 'response', respsonse );
+        discord.login( this.__config.get('Discord.discordToken') )
+            .then( ( response ) => {
+                console.log( 'response', response );
             } )
             .catch( ( error ) => {
                 throw error;

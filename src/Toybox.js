@@ -16,9 +16,9 @@ export default class Toybox {
     }
 
     __loadServices() {
-        each(this.__config.get('Services'), (item) => {
-            this.__addProvider(item);
-        });
+        each( this.__config.get( 'Services' ), ( item ) => {
+            this.__addProvider( item );
+        } );
     }
 
     /**
@@ -26,13 +26,15 @@ export default class Toybox {
      * @param serviceName {string}
      * @param provides {function}
      */
-    add(serviceName, provides = () => { return false; } ) {
-        if (!this.has(serviceName)) {
-            this.__services[serviceName] = provides;
+    add( serviceName, provides = () => {
+        return false;
+    } ) {
+        if ( !this.has( serviceName ) ) {
+            this.__services[ serviceName ] = provides;
             return;
         }
 
-        throw new Error('Service ' + serviceName + ' already exists');
+        throw new Error( 'Service ' + serviceName + ' already exists' );
     }
 
 
@@ -41,15 +43,15 @@ export default class Toybox {
      * @param provider {Toy}
      * @private
      */
-    __addProvider(provider) {
+    __addProvider( provider ) {
 
-        let providerClass = require ('./ToyBox/' + provider).default;
-        let providerObject = new providerClass(this, this.__config);
+        let providerClass = require( './ToyBox/' + provider ).default;
+        let providerObject = new providerClass( this, this.__config );
         providerObject.boot();
         let provides = providerObject.provides();
-        each(provides, ( item, serviceName ) => {
-            this.add(serviceName, () => { return item; } );
-        });
+        each( provides, ( item, serviceName ) => {
+            this.add( serviceName, item );
+        } );
 
     }
 
@@ -58,8 +60,8 @@ export default class Toybox {
      * @param serviceName
      * @returns {*}
      */
-    has(serviceName = '') {
-        return ( typeof this.__services[serviceName] !== 'undefined' );
+    has( serviceName = '' ) {
+        return ( typeof this.__services[ serviceName ] !== 'undefined' );
     }
 
     /**
@@ -67,12 +69,12 @@ export default class Toybox {
      * @param serviceName
      * @returns {*}
      */
-    get(serviceName = '') {
+    get( serviceName = '' ) {
 
-        if (this.has(serviceName)) {
-            return this.__services[serviceName];
+        if ( this.has( serviceName ) ) {
+            return this.__services[ serviceName ];
         }
 
-        throw new Error('Service ' + serviceName + ' not defined' );
+        throw new Error( 'Service ' + serviceName + ' not defined' );
     }
 }
