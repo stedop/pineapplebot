@@ -2,7 +2,7 @@
 
 # so we don't share or keys
 config/default.json
-
+dist
 
 # IntelliJ project files
 .idea
