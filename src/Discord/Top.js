@@ -1,6 +1,10 @@
+'use strict';
+
+/**
+ * @import { Message } from 'discord.js';
+ */
 import { each } from 'lodash';
 import DiscordCommand from './../DiscordCommand';
-import { Message } from 'discord.js';
 
 export default class Top extends DiscordCommand {
 

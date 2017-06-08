@@ -1,4 +1,8 @@
-import Dot from 'dot';
+'use strict';
+
+/**
+ * @import Message from 'discord.js'
+ */
 import DiscordCommand from './../DiscordCommand';
 
 export default class Ping extends DiscordCommand {
@@ -17,7 +21,7 @@ export default class Ping extends DiscordCommand {
 
     /**
      *
-     * @param message { Discord.message }
+     * @param message { Message }
      * @param params { {} }
      */
     process(message, params) {

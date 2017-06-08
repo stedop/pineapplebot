@@ -15,10 +15,27 @@ export default class Toybox {
         this.__loadServices();
     }
 
+    /**
+     * Loads the config services
+     *
+     * @private
+     */
     __loadServices() {
+
+        this.__configAsService();
         each( this.__config.get( 'Services' ), ( item ) => {
             this.__addProvider( item );
         } );
+    }
+
+    /**
+     * Setup the config service
+     * @private
+     */
+    __configAsService() {
+        this.add('config', () => {
+            return this.__config;
+        });
     }
 
     /**

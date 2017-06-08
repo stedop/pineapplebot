@@ -45,17 +45,16 @@ export default class Discord extends Toy {
             console.log( 'Logged in to discord!' );
             this
                 .__discord.user
-                .setGame( this.__config.get('Discord.commandPrefix') + 'help' )
+                .setGame( this.__config.get( 'Discord.commandPrefix' ) + 'help' )
                 .catch(
                     ( error ) => {
                         throw(error);
                     } );
-
         } );
         this.__discord.on( 'message', ( msg ) => this.handleMessage( msg ) );
         this.__discord.on( 'messageUpdate', ( oldMessage, newMessage ) => this.handleMessage( newMessage ) );
         this.__discord.on( 'disconnected', () => {
-            console.log( 'Disconnected!' );
+            this.__toybox.get('logger').error( 'Disconnected!' );
             process.exit( 1 ); //exit node.js with an error
         } );
     }
@@ -66,8 +65,8 @@ export default class Discord extends Toy {
     provides() {
 
         return {
-            'discord' : this.__discord,
-            'router' : this.__router
+            'discord': this.__discord,
+            'router': this.__router
         };
     }
 
@@ -76,7 +75,7 @@ export default class Discord extends Toy {
      * @returns {DiscordRouter}
      */
     setupRouter() {
-        return new DiscordRouter( this.discordCommands, this.__discord, this.__toybox.get('dot'), this.__toybox.get('reddit'), this.__config);
+        return new DiscordRouter( this.discordCommands, this.__discord, this.__toybox, this.__config );
     }
 
     /**
@@ -86,14 +85,14 @@ export default class Discord extends Toy {
      */
     handleMessage( msg ) {
         try {
-            if (msg.author !== this.__discord.user) {
+            if ( msg.author !== this.__discord.user ) {
                 let cmd = this.__router.checkMessagesForCommand( msg );
 
                 if ( cmd !== false ) {
                     return cmd.process( msg );
                 }
 
-                if (msg.content.substring( 0, this.commandPrefix.length ) === this.commandPrefix) {
+                if ( msg.content.substring( 0, this.commandPrefix.length ) === this.commandPrefix ) {
                     msg.channel.sendMessage(
                         'Not recognized as a command! Try ' + this.commandPrefix + 'help' ).then( (message => message.delete( 5000 ))
                     );

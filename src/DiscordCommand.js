@@ -1,26 +1,57 @@
 'use strict';
 
-import Dot from 'dot';
-import Snoowrap from 'snoowrap';
-import Discord from 'discord.js';
-import Config from 'config';
-
+/**
+ * @import Toybox from './Toybox';
+ * @import Config from 'config';
+ * @import Client from 'discord.js';
+ * @import Dot from 'dot';
+ * @import Snoowrap from 'snoowrap';
+ */
 export default class DiscordCommand {
 
     /**
      * Sets up command
      *
-     * @param discord { Discord.Client }
-     * @param dot { Dot }
-     * @param reddit { Snoowrap }
-     * @param config { Config }
+     * @param discord {Client}
+     * @param toybox {Toybox}
+     *
      * @returns {DiscordCommand}
      */
-    constructor( discord, dot, reddit, config ) {
+    constructor( discord, toybox ) {
+        /**
+         *
+         * @type {Toybox}
+         * @private
+         */
+        this.__toybox = toybox;
+
+        /**
+         *
+         * @type {Client}
+         * @private
+         */
         this.__discord = discord;
-        this.__dot = dot;
-        this.__reddit = reddit;
-        this.__config = config;
+
+        /**
+         *
+         * @type {Dot}
+         * @private
+         */
+        this.__dot = this.__toybox.get('dot');
+
+        /**
+         *
+         * @type {Snoowrap}
+         * @private
+         */
+        this.__reddit = this.__toybox.get('reddit');
+
+        /**
+         *
+         * @type {Config}
+         * @private
+         */
+        this.__config = this.__toybox.get('config');
 
         return this;
     }

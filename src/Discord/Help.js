@@ -1,8 +1,12 @@
+/**
+ * @import { Message } from 'discord.js';
+ */
+
 import { sortBy, each } from 'lodash';
 import DiscordCommand from './../DiscordCommand';
-import { Message } from 'discord.js';
 
 export default class Help extends DiscordCommand {
+
     /**
      * Define command
      * @returns { Help }

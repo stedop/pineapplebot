@@ -1,6 +1,10 @@
-"use strict";
+'use strict';
 
-import Config from 'config';
+/**
+ * @import Config from 'config'
+ * @import Toybox from 'toybox'
+ */
+
 
 export default class Toy {
 
