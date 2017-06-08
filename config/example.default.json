@@ -1,22 +1,31 @@
 {
-  "debug": true,
+  "Debug": true,
 
-  "reddit" : {
+  "Log": {
+    "file": "logs/bot.log"
+  },
+
+  "Services": {
+    "reddit": "Reddit.js",
+    "dot": "DotProvider.js",
+    "discord": "Discord.js"
+  },
+
+  "Reddit": {
     "userAgent": "",
     "clientId": "",
     "clientSecret": "",
     "refreshToken": "",
     "subreddit": ""
   },
-  "discord" : {
-    "token": "",
-    "server": "",
+  "Discord": {
+    "discordToken": "",
+    "discordServer": "",
     "commandPrefix": "!"
   },
-  "dot" : {
-    "templateSettings": {
-      "strip": false
-    },
+  "Dot": {
     "path": "views/"
   }
+
+}
 }
