@@ -4,17 +4,19 @@ import Config from 'config';
 import winston from 'winston';
 import PineappleBot from './PineappleBot';
 
+const config = Config;
+const narc = new winston.Logger(
+    {
+        level: (config.get('Debug') === true) ? 'debug' : 'info',
+        transports: [
+            new (winston.transports.File)({ filename: config.get('Log.file') })
+        ]
+    }
+);
+
 try {
-    const narc = new winston.Logger(
-        {
-            level: (Config.get('Debug') === true) ? 'debug' : 'info',
-            transports: [
-                new (winston.transports.File)({ filename: Config.get('Log.file') })
-            ]
-        }
-    );
-    const pineAppleBot = new PineappleBot(Config, narc);
+    const pineAppleBot = new PineappleBot(config, narc);
     pineAppleBot.go();
 } catch ( error ) {
-    console.log('error', error.stack);
+    narc.log('error', error.message, error.stack);
 }
