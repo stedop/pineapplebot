@@ -1,11 +1,35 @@
 'use strict';
 
 import Config from 'config';
+import winston from 'winston';
 import PineappleBot from './PineappleBot';
 
+/**
+ * @constant {winston.Logger} narc
+ */
+const narc = new winston.Logger(
+    {
+        level: 'error',
+        transports: [
+            new (winston.transports.File)( { filename: Config.get( 'Log.file' ) } )
+        ]
+    }
+);
+
+if (Config.get( 'Debug' ) === true) {
+    narc.configure({
+        level: 'debug',
+        transports: [
+            new (winston.transports.Console)(),
+            new (winston.transports.File)( { filename: Config.get( 'Log.file' ) } ),
+
+        ]
+    });
+}
+
 try {
-    const pineAppleBot = new PineappleBot(Config);
-    pineAppleBot.go();
+    const pineappleBot = new PineappleBot( Config, narc );
+    pineappleBot.go();
 } catch ( error ) {
-    console.log('error', error.stack);
+    narc.log( 'error', error.message, error.stack );
 }
