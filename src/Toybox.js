@@ -5,8 +5,25 @@ import { each } from 'lodash';
 
 export default class Toybox {
 
-    constructor( config ) {
+    /**
+     *
+     * @param config {Config}
+     * @param narc {Logger}
+     */
+    constructor( config, narc ) {
+        /**
+         *
+         * @type {Config}
+         * @private
+         */
         this.__config = config;
+
+        /**
+         *
+         * @type {Logger}
+         * @private
+         */
+        this.__narc = narc;
 
         /**
          * {{}}
@@ -22,8 +39,9 @@ export default class Toybox {
      */
     __loadServices() {
 
-        this.__configAsService();
+        this.__setupBasics();
         each( this.__config.get( 'Services' ), ( item ) => {
+            this.__narc.debug('loading service', item);
             this.__addProvider( item );
         } );
     }
@@ -32,7 +50,11 @@ export default class Toybox {
      * Setup the config service
      * @private
      */
-    __configAsService() {
+    __setupBasics() {
+        // provides the logger and config as a service
+        this.add('narc', () => {
+            return this.__narc;
+        });
         this.add('config', () => {
             return this.__config;
         });
@@ -67,6 +89,7 @@ export default class Toybox {
         providerObject.boot();
         let provides = providerObject.provides();
         each( provides, ( item, serviceName ) => {
+            this.__narc.debug('loading ' + serviceName + ' from provider', item);
             this.add( serviceName, item );
         } );
 

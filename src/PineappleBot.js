@@ -27,7 +27,7 @@ export default class bot {
          *
          * @type {ToyBox}
          */
-        this.__toybox = new ToyBox(config);
+        this.__toybox = new ToyBox(config, narc);
 
         /**
          *
@@ -35,11 +35,6 @@ export default class bot {
          * @private
          */
         this.__narc = narc;
-
-        // provides the logger as a service
-        this.__toybox.add('narc', () => {
-            return narc;
-        });
     }
 
     /**
