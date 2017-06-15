@@ -6,6 +6,7 @@
   },
 
   "Services": {
+    "toker": "Toker.js",
     "reddit": "Reddit.js",
     "dot": "DotProvider.js",
     "discord": "Discord.js"

@@ -20,7 +20,6 @@ export default class Toy {
          * @type {Config}
          */
         this.config = config;
-        this.boot();
     }
 
     /**
