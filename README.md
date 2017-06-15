@@ -11,14 +11,12 @@
  - **Help** - give the help for a command, leave blank to list all commands.
  - **Ping** - responds pong, useful for checking if bot is alive.
  - **Top** - lists the top n posts in r/uktrees, maximum of 10.
- - **Where** - will tell you if this user is registered on the map and tell you their location -- **work in progress**.
+ - **Where** - will tell you if this user is registered on the map and tell you their location.
 
  ## Roadmap for the future.
 
- 1. The service provider needs to be properly realised, it works at the moment but improvments can be made
- 2. More commands can be written I'd really like to build it so the commands can be "dropped in".
- 3. I think the router could be sped up also
- 4. The config system can be better, I don't like so many options for the bot start.
+ 1. I'm going to add a state manager, I'm thinking to push this towards the discord commands affect reddit actions etc
+ 2. An event system needs to go along with the state manager
  
  ## Contributing
  
