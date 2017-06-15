@@ -4,7 +4,7 @@
  * @import { Message } from 'discord.js';
  */
 import { filter, matchesProperty } from 'lodash';
-import DiscordCommand from './../DiscordCommand';
+import DiscordCommand from '../DiscordCommand';
 import axios from 'axios';
 
 export default class Where extends DiscordCommand {

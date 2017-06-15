@@ -4,7 +4,7 @@
  * @import { Message } from 'discord.js';
  */
 import { each } from 'lodash';
-import DiscordCommand from './../DiscordCommand';
+import DiscordCommand from '../DiscordCommand';
 
 export default class Top extends DiscordCommand {
 
@@ -30,12 +30,12 @@ export default class Top extends DiscordCommand {
             n = parseInt(this.suffix);
         }
         this
-            .__reddit
-            .getSubreddit( this.__config.get('Reddit.subreddit') )
+            .reddit
+            .getSubreddit( this.config.get('Reddit.subreddit') )
             .getHot()
             .then(
                 ( response ) => {
-                    this.sendBatchedMessage( this.__dot.top( { 'number': n, 'listings': response.slice( 0, n ) } ), message );
+                    this.sendBatchedMessage( this.dot.top( { 'number': n, 'listings': response.slice( 0, n ) } ), message );
                 } );
     }
 

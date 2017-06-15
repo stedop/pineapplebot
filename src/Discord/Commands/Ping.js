@@ -3,7 +3,7 @@
 /**
  * @import Message from 'discord.js'
  */
-import DiscordCommand from './../DiscordCommand';
+import DiscordCommand from '../DiscordCommand';
 
 export default class Ping extends DiscordCommand {
 

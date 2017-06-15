@@ -1,11 +1,6 @@
 'use strict';
 
-/**
- * @import Config from 'config';
- * @import Logger from 'winston';
- */
-
-import ToyBox from './Toybox';
+import ToyBox from './ToyBox/Toybox';
 
 export default class bot {
 
@@ -27,7 +22,7 @@ export default class bot {
          *
          * @type {ToyBox}
          */
-        this.__toybox = new ToyBox(config, narc);
+        this.toybox = new ToyBox(config, narc);
 
         /**
          *
@@ -41,7 +36,7 @@ export default class bot {
      *
      */
     go() {
-        let discord = this.__toybox.get('discord');
+        let discord = this.toybox.get('discord');
         discord.login( this.__config.get('Discord.discordToken') )
             .then( ( response ) => {
                 this.__narc.log( 'response', response );

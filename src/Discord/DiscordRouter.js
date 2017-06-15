@@ -1,12 +1,12 @@
 'use strict';
 
-import { each, sortBy } from 'lodash';
+import { each } from 'lodash';
 
 export default class DiscordRouter {
 
     /**
      *
-     * @param routes {}
+     * @param routes {{}}
      * @param discord {Client}
      * @param toybox {Toybox}
      * @param config {Config}
@@ -26,7 +26,7 @@ export default class DiscordRouter {
          * @type {Toybox}
          * @private
          */
-        this.__toybox = toybox;
+        this.toybox = toybox;
 
         /**
          *
@@ -57,11 +57,11 @@ export default class DiscordRouter {
 
     /**
      *
-     * @param routes {DiscordCommand}
+     * @param routes {{DiscordCommand}}
      */
     parseRoutes( routes ) {
         each( routes, ( route ) => {
-            route = new route( this.__discord, this.__toybox ).boot();
+            route = new route( this.__discord, this.toybox ).boot();
             let key = route.name.toLowerCase();
             this.__routes[ key ] = route;
         } );

@@ -4,6 +4,7 @@ import Config from 'config';
 import winston from 'winston';
 import PineappleBot from './PineappleBot';
 
+
 /**
  * @constant {winston.Logger} narc
  */
@@ -20,7 +21,7 @@ if (Config.get( 'Debug' ) === true) {
     narc.configure({
         level: 'debug',
         transports: [
-            new (winston.transports.Console)(),
+            //new (winston.transports.Console)(),
             new (winston.transports.File)( { filename: Config.get( 'Log.file' ) } ),
 
         ]

@@ -1,11 +1,5 @@
 'use strict';
 
-/**
- * @import Config from 'config'
- * @import Toybox from 'toybox'
- */
-
-
 export default class Toy {
 
     /**
@@ -19,13 +13,13 @@ export default class Toy {
          *
          * @type {Toybox}
          */
-        this.__toybox = toybox;
+        this.toybox = toybox;
 
         /**
          * 
          * @type {Config}
          */
-        this.__config = config;
+        this.config = config;
         this.boot();
     }
 

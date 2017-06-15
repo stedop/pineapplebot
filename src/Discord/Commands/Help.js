@@ -3,7 +3,7 @@
  */
 
 import { sortBy, each } from 'lodash';
-import DiscordCommand from './../DiscordCommand';
+import DiscordCommand from '../DiscordCommand';
 
 export default class Help extends DiscordCommand {
 
@@ -26,6 +26,8 @@ export default class Help extends DiscordCommand {
     process( message, params ) {
         let routes = this.routes;
         let cmds = {};
+        let prefix = this.config.get('Discord.commandPrefix');
+
         if ( this.suffix ) {
             cmds = this.suffix.split( ' ' ).filter( function ( cmd ) {
                 return routes[ cmd ];
@@ -34,7 +36,7 @@ export default class Help extends DiscordCommand {
             cmds = sortBy( routes, [ '' ] );
         }
 
-        let contents = this.__dot.helpList( { 'commands': cmds, 'prefix': this.__config.get('Discord.commandPrefix') } );
+        let contents = this.dot.helpList( { 'commands': cmds, 'prefix':  prefix } );
         this.sendBatchedMessage( contents, message );
     }
 

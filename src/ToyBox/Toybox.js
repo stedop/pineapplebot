@@ -1,6 +1,5 @@
 'use strict';
 
-import Toy from './ToyBox/Toy';
 import { each } from 'lodash';
 
 export default class Toybox {
@@ -52,22 +51,16 @@ export default class Toybox {
      */
     __setupBasics() {
         // provides the logger and config as a service
-        this.add('narc', () => {
-            return this.__narc;
-        });
-        this.add('config', () => {
-            return this.__config;
-        });
+        this.add('narc', this.__narc);
+        this.add('config', this.__config);
     }
 
     /**
      *
      * @param serviceName {string}
-     * @param provides {function}
+     * @param provides {object}
      */
-    add( serviceName, provides = () => {
-        return false;
-    } ) {
+    add( serviceName, provides ) {
         if ( !this.has( serviceName ) ) {
             this.__services[ serviceName ] = provides;
             return;
@@ -84,7 +77,9 @@ export default class Toybox {
      */
     __addProvider( provider ) {
 
-        let providerClass = require( './ToyBox/' + provider ).default;
+        let fileName = __dirname + '/Toys/' + provider;
+        this.__narc.debug('fileName', fileName);
+        let providerClass = require( fileName ).default;
         let providerObject = new providerClass( this, this.__config );
         providerObject.boot();
         let provides = providerObject.provides();
@@ -117,4 +112,6 @@ export default class Toybox {
 
         throw new Error( 'Service ' + serviceName + ' not defined' );
     }
+
+
 }

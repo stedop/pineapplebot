@@ -1,13 +1,13 @@
 'use strict';
 
-import Toy from './Toy';
+import Toy from '../Toy';
 import { Client } from 'discord.js';
-import DiscordRouter from './../DiscordRouter';
-
-import Help from './../Discord/Help';
-import Ping from './../Discord/Ping';
-import Top from './../Discord/Top';
-import Where from './../Discord/Where';
+import DiscordRouter from '../../Discord/DiscordRouter';
+// Commands
+import Help from '../../Discord/Commands/Help';
+import Ping from '../../Discord/Commands/Ping';
+import Top from '../../Discord/Commands/Top';
+import Where from '../../Discord/Commands/Where';
 
 export default class Discord extends Toy {
     boot() {
@@ -41,11 +41,18 @@ export default class Discord extends Toy {
          */
         this.__router = this.setupRouter();
 
+        /**
+         *
+         * @type {Logger}
+         * @private
+         */
+        this.__narc = this.toybox.get('narc');
+
         this.__discord.on( 'ready', () => {
-            console.log( 'Logged in to discord!' );
+            this.__narc.info( 'Logged in to discord!' );
             this
                 .__discord.user
-                .setGame( this.__config.get( 'Discord.commandPrefix' ) + 'help' )
+                .setGame( this.config.get( 'Discord.commandPrefix' ) + 'help' )
                 .catch(
                     ( error ) => {
                         throw(error);
@@ -54,7 +61,7 @@ export default class Discord extends Toy {
         this.__discord.on( 'message', ( msg ) => this.handleMessage( msg ) );
         this.__discord.on( 'messageUpdate', ( oldMessage, newMessage ) => this.handleMessage( newMessage ) );
         this.__discord.on( 'disconnected', () => {
-            this.__toybox.get('logger').error( 'Disconnected!' );
+            this.__narc.error( 'Disconnected!' );
             process.exit( 1 ); //exit node.js with an error
         } );
     }
@@ -75,7 +82,7 @@ export default class Discord extends Toy {
      * @returns {DiscordRouter}
      */
     setupRouter() {
-        return new DiscordRouter( this.discordCommands, this.__discord, this.__toybox, this.__config );
+        return new DiscordRouter( this.discordCommands, this.__discord, this.toybox, this.config );
     }
 
     /**
