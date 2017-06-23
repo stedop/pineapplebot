@@ -21,7 +21,7 @@ if (Config.get( 'Debug' ) === true) {
     narc.configure({
         level: 'debug',
         transports: [
-            //new (winston.transports.Console)(),
+            new (winston.transports.Console)(),
             new (winston.transports.File)( { filename: Config.get( 'Log.file' ) } ),
 
         ]

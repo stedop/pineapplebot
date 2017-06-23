@@ -1,7 +1,7 @@
 'use strict';
 
 import Toy from '../Toy';
-import { Client } from 'discord.js';
+import { Client, Message } from 'discord.js';
 import DiscordRouter from '../../Discord/DiscordRouter';
 // Commands
 import Help from '../../Discord/Commands/Help';
@@ -46,22 +46,24 @@ export default class Discord extends Toy {
          * @type {Logger}
          * @private
          */
-        this.__narc = this.toybox.get('narc');
+        this.__narc = this.toybox.get( 'narc' );
 
-        this.__discord.on( 'ready', () => {
-            this.__narc.info( 'Logged in to discord!' );
-            this
-                .__discord.user
-                .setGame( this.config.get( 'Discord.commandPrefix' ) + 'help' )
-                .catch(
-                    ( error ) => {
-                        throw(error);
-                    } );
-        } );
-        this.__discord.on( 'message', ( msg ) => this.handleMessage( msg ) );
-        this.__discord.on( 'messageUpdate', ( oldMessage, newMessage ) => this.handleMessage( newMessage ) );
+        this.__discord
+            .on( 'ready', () => {
+                this.__narc.info( 'Logged in to discord!' );
+                this
+                    .__discord.user
+                    .setGame( this.config.get( 'Discord.commandPrefix' ) + 'help' )
+                    .catch(
+                        ( error ) => {
+                            throw new Error( error );
+                        } );
+            } );
+        this.__discord.on( 'message', ( msg ) => this.handleMessage( msg ) )
+        this.__discord.on( 'messageUpdate', ( oldMessage, newMessage ) => this.handleMessage( newMessage ) )
         this.__discord.on( 'disconnected', () => {
             this.__narc.error( 'Disconnected!' );
+            //todo turn this into a state change or event driven reconnect
             process.exit( 1 ); //exit node.js with an error
         } );
     }
@@ -87,21 +89,22 @@ export default class Discord extends Toy {
 
     /**
      *
-     * @param msg { Discord.Message }
+     * @param msg { Message }
      * @returns {*}
      */
     handleMessage( msg ) {
         try {
             if ( msg.author !== this.__discord.user ) {
+                let prefix = this.config.get( 'Discord.commandPrefix' );
                 let cmd = this.__router.checkMessagesForCommand( msg );
 
                 if ( cmd !== false ) {
                     return cmd.process( msg );
                 }
 
-                if ( msg.content.substring( 0, this.commandPrefix.length ) === this.commandPrefix ) {
+                if ( msg.content.substring( 0, prefix.length ) === prefix ) {
                     msg.channel.sendMessage(
-                        'Not recognized as a command! Try ' + this.commandPrefix + 'help' ).then( (message => message.delete( 5000 ))
+                        'Not recognized as a command! Try ' + prefix + 'help' ).then( ( message => message.delete( 5000 ))
                     );
                 }
             }
